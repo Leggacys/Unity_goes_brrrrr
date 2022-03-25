@@ -42,9 +42,24 @@ public class PlayerAnimations : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.LookAt(rotationPoints[indexOfPoint]);
+        // Determine which direction to rotate towards
+        Vector3 targetDirection = rotationPoints[indexOfPoint].position - transform.position;
+        //targetDirection.y = 0;
+        //targetDirection.x =0;
+        // The step size is equal to speed times frame time.
+        float singleStep = rotationSpeed * Time.deltaTime;
+
+        // Rotate the forward vector towards the target direction by one step
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0f);
+        
+        // Draw a ray pointing at our target in
+        //Debug.DrawRay(transform.position, newDirection, Color.red);
+
+        // Calculate a rotation a step closer to the target and applies rotation to this object
+        transform.rotation = Quaternion.LookRotation(newDirection);
+        //transform.LookAt(rotationPoints[indexOfPoint]);
 
     }
 
