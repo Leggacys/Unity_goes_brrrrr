@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
+using UnityEngine.Serialization;
 
 public class PlayerAnimations : MonoBehaviour
 {
@@ -24,12 +24,13 @@ public class PlayerAnimations : MonoBehaviour
 
     #endregion
 
-    public Transform[] rotationPoints;
-    public float rotationSpeed;
-
-    private int indexOfPoint=2;
+    public List<float> angles;
+    public float tweeningTime;
+    
     private bool isRotating;
-
+    private int index = 0;
+    private bool reverse;
+    
     private void RotateEffect()
     {
        // Debug.Log("outside the if");
@@ -37,58 +38,28 @@ public class PlayerAnimations : MonoBehaviour
         {
             //Debug.Log("in RotateEffect");
             isRotating = true;
-            StartCoroutine(Rotate());
+            LeanTween.rotateX(gameObject, angles[index], tweeningTime)
+                .setEaseInCubic()
+                .setOnComplete(FinishingRotation);
         }
     }
 
-
-    private void FixedUpdate()
+    private void FinishingRotation()
     {
-        // Determine which direction to rotate towards
-        Vector3 targetDirection = rotationPoints[indexOfPoint].position - transform.position;
-        //targetDirection.y = 0;
-        //targetDirection.x =0;
-        // The step size is equal to speed times frame time.
-        float singleStep = rotationSpeed * Time.deltaTime;
-
-        // Rotate the forward vector towards the target direction by one step
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0f);
+        if (reverse)
+        {
+            index--;
+        }
+        else
+        {
+            index++;
+        }
         
-        // Draw a ray pointing at our target in
-        //Debug.DrawRay(transform.position, newDirection, Color.red);
-
-        // Calculate a rotation a step closer to the target and applies rotation to this object
-        transform.rotation = Quaternion.LookRotation(newDirection);
-        //transform.LookAt(rotationPoints[indexOfPoint]);
-
-    }
-
-    IEnumerator Rotate()
-    {
-
-        indexOfPoint++;
-        if (indexOfPoint >= rotationPoints.Length)
-            indexOfPoint = 0;
         isRotating = false;
-        
-        Debug.LogWarning(rotationPoints[indexOfPoint].gameObject.name);
-        
-        yield return null;
+        if (index + index >= angles.Count || index -1 < 0)
+            reverse = !reverse;
     }
-
-    private bool CheckRotation()
-    {
-        Vector3 relativePosition = (rotationPoints[indexOfPoint].position -
-                                   transform.position).normalized ;
-
-        float dot = Vector3.Dot(relativePosition, transform.forward);
-
-        if (dot > 0.9)
-            return true;
-        return false;
-
-    }
-
+    
 
     public void FallAnimation()
     {

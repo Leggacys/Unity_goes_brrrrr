@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
 
 public class PlayerManager : MonoBehaviour
@@ -38,7 +37,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (PlayerMovement.instance.isGrounded)
         {
-            Debug.LogWarning("Jump Animation!!!!");
             PlayerMovement.instance.Jump();
         }
     }
