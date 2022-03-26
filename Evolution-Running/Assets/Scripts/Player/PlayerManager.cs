@@ -43,8 +43,10 @@ public class PlayerManager : MonoBehaviour
 
     public void AttackMove()
     {
-
+        if(PlayerMovement.instance.canAttack){
+        PlayerMovement.instance.canAttack = false;
         PlayerMovement.instance.Attack();
+        }
 
     }
 
