@@ -35,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Attack")]
 	public GameObject projectile;
 	public float throwPower;
+	
+	private Vector3 direction;
+	public LayerMask ground;
+	public float raycastDistance;
 
 	private void Start()
 	{
@@ -46,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 		rb.MovePosition(  rb.position + new Vector3(0,velocity.y,
 			velocity.z* PlayerManager.instace.speed) * Time.fixedDeltaTime);
 		Gravity();
+		TakeGroundAngle();
 	}
 	
 	private void OnCollisionEnter(Collision collision)
@@ -63,14 +68,26 @@ public class PlayerMovement : MonoBehaviour
 
 		velocity.y += gravity * Time.deltaTime;
 	}
-
+	
+	
 	public void Jump()
 	{
+		isGrounded = false;	
 		velocity.y = Mathf.Sqrt(PlayerManager.instace.jumpAmount * -2f * gravity);
 		PlayerAnimations.instance.JumpEffect(PlayerManager.instace.playerBody);
 		
 	}
 
+	void TakeGroundAngle()
+	{
+		RaycastHit hit;
+
+		if (Physics.Raycast(transform.position, -transform.up, out hit,raycastDistance, ground))
+		{
+			Quaternion angle = Quaternion.FromToRotation(transform.up, hit.normal);
+			transform.rotation = Quaternion.Slerp(transform.rotation,angle * transform.rotation,10);
+		}
+	}
 
 
 	public void Attack()
