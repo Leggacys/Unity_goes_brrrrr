@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject newProjectile = Instantiate(projectile,transform.position + transform.forward + transform.up, Quaternion.identity);
         newProjectile.GetComponent<Rigidbody>().AddForce((transform.up + transform.forward)*throwPower,ForceMode.Impulse);
         StartCoroutine(attackCooldown());
-
+        
     }
 
     IEnumerator attackCooldown(){
