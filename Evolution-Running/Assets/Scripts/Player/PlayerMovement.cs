@@ -25,11 +25,17 @@ public class PlayerMovement : MonoBehaviour
 	
 	
 	public float gravity = -9.18f;
+	
 	public bool isGrounded { get; set; }
 	
 	private Vector3 velocity = new Vector3(2 , 0 ,0);
 	private Rigidbody rb;
 	
+
+	[Header("Attack")]
+	public GameObject projectile;
+	public float throwPower;
+
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -63,5 +69,15 @@ public class PlayerMovement : MonoBehaviour
 		velocity.y = Mathf.Sqrt(PlayerManager.instace.jumpAmount * -2f * gravity);
 		PlayerAnimations.instance.JumpEffect(PlayerManager.instace.playerBody);
 		
+	}
+
+
+
+	public void Attack()
+	{
+		GameObject newProjectile = Instantiate(projectile,transform.position + transform.forward + transform.up, Quaternion.identity);
+		newProjectile.GetComponent<Rigidbody>().AddForce((transform.up + transform.forward)*throwPower,ForceMode.Impulse);
+
+
 	}
 }

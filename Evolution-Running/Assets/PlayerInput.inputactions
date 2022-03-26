@@ -1,5 +1,5 @@
 {
-    "name": "PlayerMovement",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Movement",
@@ -9,6 +9,14 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "88c24e66-cd0e-4c95-9e21-5a4e2c1e955c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "290ca95a-9b53-47a7-9fcc-d3e0b3d32d90",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -23,6 +31,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aecf8de7-2fc4-4d29-96aa-cea90adfc007",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

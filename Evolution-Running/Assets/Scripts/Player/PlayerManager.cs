@@ -43,9 +43,17 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void AttackMove()
+    {
+
+        PlayerMovement.instance.Attack();
+
+    }
+
     private void Start()
     {
         playerInput.Movement.Jump.performed += context => JumpAnimation();
+        playerInput.Movement.Throw.performed += context => AttackMove();
     }
 
     private void OnEnable()
