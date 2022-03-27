@@ -28,7 +28,7 @@ public class PieceSize : MonoBehaviour
         for(float i = 0; i < maxScanLength; i+=ratio) {
              RaycastHit hit;
             //layers = ~layers;
-             RayPosition += new Vector3(0.05f,0,0);
+             RayPosition += new Vector3(0,0,ratio);
             DownDirection = Vector3.down;
             Ray ray = new Ray(RayPosition,DownDirection);
             if(Physics.Raycast(ray,out hit,40)){
@@ -52,14 +52,15 @@ public class PieceSize : MonoBehaviour
            //Debug.DrawLine(RayPosition, DownDirection,Color.white,0.5f);
            yield return new WaitForSeconds(0.001f);
         }
-        width = Mathf.Abs(transform.position.x - lastHit.x);
+        width = Mathf.Abs(transform.position.z - lastHit.z);
         endpointRelative = lastHit.y - transform.position.y;
         //Debug.Log(count);
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 3; i++) {
             if(generator.inactivePool == null)
                 generator.inactivePool = new List<GameObject>();
-            GameObject generated = Instantiate(this.gameObject,this.transform.position,this.transform.rotation);
+            GameObject generated = Instantiate(gameObject,transform.position,this.transform.rotation);
+            generated.transform.localScale = transform.localScale;
             generated.GetComponent<PieceSize>().isFirstTime = false;
             
             generator.inactivePool.Add(generated);

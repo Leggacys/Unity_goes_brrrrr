@@ -80,8 +80,8 @@ public class PieceGenerator : MonoBehaviour
                 // generated.SetActive(true);
                 // generated.GetComponent<PieceView>().enabled = true;
                 succesfull = true;
-                startPoint += new Vector3(size.width,size.endpointRelative,0);
-                latestOffset = new Vector3(size.width,size.endpointRelative,0);
+                startPoint += new Vector3(0,size.endpointRelative,size.width);
+                latestOffset = new Vector3(0,size.endpointRelative,size.width);
                 
             }
 

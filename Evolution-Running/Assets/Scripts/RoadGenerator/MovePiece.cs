@@ -10,6 +10,6 @@ public class MovePiece : MonoBehaviour
     void Update()
     {
         if(isRunning)
-            this.transform.position -= new Vector3(speed * Time.deltaTime,0,0);  
+            this.transform.position -= new Vector3(0,0,speed * Time.deltaTime);  
     }
 }

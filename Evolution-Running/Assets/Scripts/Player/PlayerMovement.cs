@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	public bool isGrounded { get; set; }
 	
-	private Vector3 velocity = new Vector3(2 , 0 ,0);
+	private Vector3 velocity = new Vector3(0 , 0 ,1);
 	private Rigidbody rb;
 	
 

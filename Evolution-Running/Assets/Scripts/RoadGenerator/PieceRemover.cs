@@ -10,6 +10,8 @@ public class PieceRemover : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Collided");
         generator.removeFromPool(other.gameObject);
+        if(other.gameObject.tag == "Enemy")
+            Destroy(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other) {
