@@ -44,16 +44,26 @@ public class PlayerManager : MonoBehaviour
     public void AttackMove()
     {
         if(PlayerMovement.instance.canAttack){
-        PlayerMovement.instance.canAttack = false;
-        PlayerMovement.instance.Attack();
+            PlayerMovement.instance.canAttack = false;
+            PlayerMovement.instance.Attack();
         }
 
+    }
+
+    public void DashMove()
+    {
+        if (PlayerMovement.instance.canDash)
+        {
+            PlayerMovement.instance.canDash = false;
+            PlayerMovement.instance.Dash();
+        }
     }
 
     private void Start()
     {
         playerInput.Movement.Jump.performed += context => JumpAnimation();
         playerInput.Movement.Throw.performed += context => AttackMove();
+        playerInput.Movement.Dash.performed += context => DashMove();
     }
 
     private void OnEnable()

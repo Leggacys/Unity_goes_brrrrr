@@ -36,7 +36,11 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject projectile;
 	public float throwPower;
 	public bool canAttack;
-    public float timeBetweenAttacks;
+	public float timeBetweenAttacks;
+
+    [Header("Dash")] 
+    public bool canDash;
+    public float dashCooldown;
     
 	private Vector3 direction;
 	public LayerMask ground;
@@ -95,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 	public void Attack()
     {
         GameObject newProjectile = Instantiate(projectile,transform.position + transform.forward + transform.up, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody>().AddForce((transform.up + transform.forward)*throwPower,ForceMode.Impulse);
+        newProjectile.GetComponent<Rigidbody>().AddForce(transform.forward*throwPower + transform.up/2,ForceMode.Impulse);
         StartCoroutine(attackCooldown());
         
     }
@@ -103,5 +107,19 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator attackCooldown(){
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
+    }
+
+    public void Dash()
+    {
+	    StartCoroutine(updateSpeed());
+    }
+
+    IEnumerator updateSpeed()
+    {
+	    //PlayerManager.instace.speed *= 2;
+	    rb.AddForce(transform.forward*10,ForceMode.Impulse);
+	    yield return new WaitForSeconds(dashCooldown);
+	    //PlayerManager.instace.speed /= 2;
+	    canDash = true;
     }
 }

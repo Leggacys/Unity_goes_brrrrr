@@ -7,7 +7,7 @@ public class MovePiece : MonoBehaviour
     public bool isRunning;
     public float speed;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(isRunning)
             this.transform.position -= new Vector3(0,0,speed * Time.deltaTime);  
