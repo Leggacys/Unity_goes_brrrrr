@@ -18,7 +18,7 @@ public class HitShrink : MonoBehaviour
 
     public void FixedUpdate()
     {
-        rb.AddForce(Vector3.back * speed * Time.deltaTime);
+        //rb.AddForce(Vector3.back * speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,6 +28,11 @@ public class HitShrink : MonoBehaviour
         {
             ProjectileEffect(collision.gameObject);
             
+        }
+
+        if (collision.gameObject.tag == "Road")
+        {
+            transform.parent = collision.gameObject.transform;
         }
 
 
