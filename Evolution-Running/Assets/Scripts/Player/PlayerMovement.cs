@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash")] 
     public bool canDash;
     public float dashCooldown;
+    public float dashForce;
+    
     
 	private Vector3 direction;
 	public LayerMask ground;
@@ -117,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator updateSpeed()
     {
 	    //PlayerManager.instace.speed *= 2;
-	    rb.AddForce(transform.forward*10,ForceMode.Impulse);
+	    rb.AddForce(transform.forward*dashForce,ForceMode.Impulse);
 	    yield return new WaitForSeconds(dashCooldown);
 	    //PlayerManager.instace.speed /= 2;
 	    canDash = true;

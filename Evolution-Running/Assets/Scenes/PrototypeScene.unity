@@ -2597,6 +2597,7 @@ MonoBehaviour:
   timeBetweenAttacks: 0.2
   canDash: 1
   dashCooldown: 1
+  dashForce: 15
   ground:
     serializedVersion: 2
     m_Bits: 0

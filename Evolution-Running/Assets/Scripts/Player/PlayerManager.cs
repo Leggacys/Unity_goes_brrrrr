@@ -89,6 +89,9 @@ public class PlayerManager : MonoBehaviour
             maxHP -= damagePerHit;
             hpBar.SetHealth(maxHP);
         }
-        
+
+        if (maxHP <= 0)
+            maxHP = 100;
+
     }
 }
