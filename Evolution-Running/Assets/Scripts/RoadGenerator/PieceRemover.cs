@@ -6,16 +6,22 @@ public class PieceRemover : MonoBehaviour
 {
 
     public PieceGenerator generator;
-    
+    public float piecesPassed = 0;
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Collided");
-        generator.removeFromPool(other.gameObject);
+        if (other.gameObject.tag == "Road")
+        {
+            generator.removeFromPool(other.gameObject);
+            GameManager.instance.PiecesPassed =1;
+            Debug.Log("Piece passed: " + GameManager.instance.PiecesPassed);
+        }
+
         if(other.gameObject.tag == "Enemy")
             Destroy(other.gameObject);
     }
 
-    private void OnTriggerExit(Collider other) {
+    //private void OnTriggerExit(Collider other) {
         //Debug.Log("Collided");
-        generator.removeFromPool(other.gameObject);
-    }
+    //    generator.removeFromPool(other.gameObject);
+    //}
 }
