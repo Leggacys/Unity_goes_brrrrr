@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PieceSize : MonoBehaviour
 {
+    
+    
     public float maxScanLength;
     public float ratio;
     public float width,maxHeight,minHeight,endpointRelative;
     //public LayerMask layers;
     public bool isFirstTime;
-    public PieceGenerator generator;
+
+    public bool isBossPiece;
+    
+    //public PieceGenerator generator;
     void Start(){
         
         if(isFirstTime)
@@ -56,7 +61,9 @@ public class PieceSize : MonoBehaviour
         endpointRelative = lastHit.y - transform.position.y;
         //Debug.Log(count);
 
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < 3; i++)
+        {
+            PieceGenerator generator = PieceGenerator.instance;
             if(generator.inactivePool == null)
                 generator.inactivePool = new List<GameObject>();
             GameObject generated = Instantiate(gameObject,transform.position,this.transform.rotation);
@@ -64,6 +71,9 @@ public class PieceSize : MonoBehaviour
             generated.GetComponent<PieceSize>().isFirstTime = false;
             
             generator.inactivePool.Add(generated);
+            
+            if(isBossPiece)
+                generator.inactiveBossPieces.Add(generated);
             
         }
 

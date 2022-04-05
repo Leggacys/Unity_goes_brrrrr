@@ -4,39 +4,109 @@ using UnityEngine;
 
 public class PieceGenerator : MonoBehaviour
 {
+    
+    
+    #region Singletone
+
+    public static PieceGenerator instance;
+    
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        //playerInput = new PlayerInput();
+    }
+    #endregion
+    
     public Vector3 startPoint;
 
     public List<GameObject> currentPieces=null;
     public List<GameObject> inactivePool=null;
+    public List<GameObject> activeBossFightPieces = null;
+    public List<GameObject> inactiveBossPieces = null;
     public float pieceSpeed;
     public float maxHeight,minHeight,length,initialLength,workingLength;
     Vector3 latestOffset;
     public int maxTries;
+
+    private int workingCase = 0;
+
+    private Coroutine bossRoutine;
+
+    private Coroutine normalRoutine;
     // Start is called before the first frame update
-    void Awake()
-    {
-        //currentPieces = new List<GameObject>();
-        //inactivePool = new List<GameObject>();
-        
-        // foreach(PieceSize obj in sizes) {
-        //     Debug.Log(obj.width);
-            
-        // }
-        
-    }
+
 
     void Start(){
         startPoint = new Vector3(0,0,0);
+        //bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
+        //StopCoroutine(bossRoutine);
+        //normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
+        //StopCoroutine(normalRoutine);
         StartCoroutine(checkPoolSize());
     }
 
     IEnumerator checkPoolSize(){
         while (true){
             if(inactivePool.Count>initialLength){
-                StartCoroutine(roadGenerator());
+                SwitchMode(1);
                 break;
             }
         yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public void SwitchMode(int id)
+    {
+        switch(id)
+        {
+            case 0:
+                workingCase = 0;
+                if(normalRoutine != null)
+                    StopCoroutine(normalRoutine);
+                //StopCoroutine(roadGenerator(inactivePool,currentPieces));
+                for(int i = 0 ; i < currentPieces.Count;i++)
+                {
+                    GameObject piece = currentPieces[i];
+                        currentPieces.Remove(piece);
+                        i--;
+                        inactivePool.Add(piece);
+                        piece.GetComponent<MovePiece>().isRunning=false;
+                        piece.SetActive(false);
+                    
+                }
+
+                bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
+                //StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
+                
+                break;
+            case 1:
+                workingCase = 1;
+                if(bossRoutine != null)
+                    StopCoroutine(bossRoutine);
+                //StopCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
+                for(int i = 0 ;i<activeBossFightPieces.Count;i++)
+                {
+
+                    GameObject piece = activeBossFightPieces[i];
+                        activeBossFightPieces.Remove(piece);
+                        i--;
+                        inactiveBossPieces.Add(piece);
+                        piece.GetComponent<MovePiece>().isRunning=false;
+                        piece.SetActive(false);
+                    
+                }
+
+                normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
+                //StartCoroutine(roadGenerator(inactivePool,currentPieces));
+                break;
+                
         }
     }
 
@@ -48,15 +118,24 @@ public class PieceGenerator : MonoBehaviour
     // }
 
     void Update(){
-        if(currentPieces.Count > 0){
+        if(workingCase == 1)
+            if(currentPieces.Count > 0){
             
             startPoint=currentPieces[currentPieces.Count-1].transform.position + latestOffset;
+            }
+
+        if (workingCase == 0)
+        {
+            if(activeBossFightPieces.Count > 0){
+            
+                startPoint=activeBossFightPieces[activeBossFightPieces.Count-1].transform.position + latestOffset;
+            }
         }
     }
 
 
 
-    public void PickPiece(){
+    public void PickPiece(List<GameObject> inactivePool,List<GameObject> activePool){
         
         int tries = 0;
         bool succesfull = false;
@@ -71,7 +150,7 @@ public class PieceGenerator : MonoBehaviour
                 inactivePool[pickIndex].transform.position = startPoint;
                 
                 inactivePool[pickIndex].SetActive(true);
-                currentPieces.Add(inactivePool[pickIndex]);
+                activePool.Add(inactivePool[pickIndex]);
                 inactivePool[pickIndex].GetComponent<MovePiece>().speed= pieceSpeed;
                 inactivePool[pickIndex].GetComponent<MovePiece>().isRunning=true;
                 inactivePool.RemoveAt(pickIndex);
@@ -93,12 +172,12 @@ public class PieceGenerator : MonoBehaviour
 
     }
 
-    IEnumerator roadGenerator(){
+    IEnumerator roadGenerator(List<GameObject> inactivePool , List<GameObject> activePool){
 
         while(true){
 
-            if(currentPieces.Count < workingLength)
-                PickPiece();
+            if(activePool.Count < workingLength)
+                PickPiece(inactivePool,activePool);
 
 
             yield return new WaitForSeconds(0.05f);
@@ -113,6 +192,12 @@ public class PieceGenerator : MonoBehaviour
         inactivePool.Add(obj);
         obj.GetComponent<MovePiece>().isRunning=false;
         obj.SetActive(false);
+        }
+        if(activeBossFightPieces.Contains(obj)){
+            activeBossFightPieces.Remove(obj);
+            inactiveBossPieces.Add(obj);
+            obj.GetComponent<MovePiece>().isRunning=false;
+            obj.SetActive(false);
         }
     }
 

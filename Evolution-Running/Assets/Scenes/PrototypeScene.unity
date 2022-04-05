@@ -156,7 +156,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1758552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &133609754
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 2
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &152198175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 554366195803866026, guid: b04fa18759ee87949b9756c1731d11dc, type: 3}
@@ -356,7 +356,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &152198181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +532,8 @@ Transform:
   m_Children:
   - {fileID: 1297016601}
   - {fileID: 2110051738}
+  - {fileID: 1507835530}
+  - {fileID: 610376678}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 58.502, y: -108.946, z: -4.84}
@@ -559,7 +561,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &254904008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +609,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &258111092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,7 +629,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &258111094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +784,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &269813101 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6493676431503938909, guid: b04fa18759ee87949b9756c1731d11dc, type: 3}
@@ -807,7 +809,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &269813107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +848,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &298597809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,7 +1067,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &538078868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,7 +1115,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &547909158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1179,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &576018909 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5162873927842524427, guid: b04fa18759ee87949b9756c1731d11dc, type: 3}
@@ -1202,7 +1204,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &576018912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,6 +1314,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581361176}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &610376677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610376678}
+  m_Layer: 0
+  m_Name: shootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610376678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610376677}
+  m_LocalRotation: {x: -0.13920894, y: 0.0034131408, z: 0.02427191, w: 0.9899597}
+  m_LocalPosition: {x: 14, y: 11.61, z: 22.48}
+  m_LocalScale: {x: 7.1019006, y: 7.1019, z: 7.101901}
+  m_Children: []
+  m_Father: {fileID: 229972102}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &622234699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27cf4607f2941b4d9ea8dec5c6abfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generator: {fileID: 1495948238}
   piecesPassed: 0
 --- !u!65 &667854384
 BoxCollider:
@@ -1565,7 +1596,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &758948451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,7 +1630,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &765944870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,7 +1650,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &765944871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,7 +1689,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &792550162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1737,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &827892932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1857,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &843513554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,7 +2141,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &991630619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2130,7 +2161,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &991630620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,7 +2200,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1041662514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2217,7 +2248,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &1051578529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,7 +2409,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1084904034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2417,7 +2448,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1086050444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2540,7 +2571,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &1126430274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,6 +2750,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1140001455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 229972102}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.1019
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.1019
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.1019006
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.739998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.810005
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.65001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9899597
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.13920894
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.003413111
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.024271913
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -16.009
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.809
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_Name
+      value: dino
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
 --- !u!1 &1163119626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2816500037161716028, guid: b04fa18759ee87949b9756c1731d11dc, type: 3}
@@ -2743,7 +2847,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1163119629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2782,7 +2886,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1187051601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2821,7 +2925,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 1
 --- !u!114 &1193043638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3473,7 +3577,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 1
 --- !u!114 &1368050489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3702,7 +3806,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1490455532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3749,12 +3853,14 @@ MonoBehaviour:
   startPoint: {x: 0, y: 0, z: 0}
   currentPieces: []
   inactivePool: []
+  activeBossFightPieces: []
+  inactiveBossPieces: []
   pieceSpeed: 7
   maxHeight: 40
   minHeight: -5
   length: 5
-  initialLength: 10
-  workingLength: 15
+  initialLength: 5
+  workingLength: 10
   maxTries: 20
 --- !u!4 &1495948239
 Transform:
@@ -3770,6 +3876,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1507835527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+  m_PrefabInstance: {fileID: 1140001455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1507835528
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507835527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2bf3bb3582ce3cc4daa2f86333ddf42c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1507835529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507835527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3b1ba75ebcbac4798ada593ab0b9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 7799947837409540093, guid: 55ec7a0d0feb7f54ca8441788414e129, type: 3}
+  player: {fileID: 1126430282}
+  bossMouth: {fileID: 610376678}
+  minInterval: 1
+  maxInterval: 5
+  force: 25
+--- !u!4 &1507835530 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5dd4735f11a1ed64ea2b8fd9ef9c1185, type: 3}
+  m_PrefabInstance: {fileID: 1140001455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1564289542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3803,7 +3956,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1567452352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3837,7 +3990,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &1567726798
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,7 +4299,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 1
 --- !u!114 &1639744751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4185,7 +4338,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1665331591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4509,7 +4662,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1728101779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4548,7 +4701,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1734238571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4587,7 +4740,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1771354953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4626,7 +4779,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1779404867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,7 +4813,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1782274959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4803,7 +4956,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &1862745130
 GameObject:
   m_ObjectHideFlags: 0
@@ -9698,7 +9851,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1866147647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9732,7 +9885,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1898063244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9988,7 +10141,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &1953882585 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4572152650444465394, guid: b04fa18759ee87949b9756c1731d11dc, type: 3}
@@ -10013,7 +10166,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &1953882591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10168,7 +10321,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &2008340559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10202,7 +10355,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1 &2031236660
 GameObject:
   m_ObjectHideFlags: 0
@@ -10345,7 +10498,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!1001 &2048122042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10523,7 +10676,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &2048122045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10557,7 +10710,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &2054067313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10602,7 +10755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpMax: 100
-  Boss: {fileID: 2110051734}
+  Boss: {fileID: 1507835527}
   progressTrigger: 5
 --- !u!4 &2054302746
 Transform:
@@ -10642,7 +10795,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 1
 --- !u!114 &2060160849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11021,7 +11174,7 @@ MonoBehaviour:
   minHeight: 0
   endpointRelative: 0
   isFirstTime: 1
-  generator: {fileID: 1495948238}
+  isBossPiece: 0
 --- !u!114 &2098234190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11146,6 +11299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 7799947837409540093, guid: 55ec7a0d0feb7f54ca8441788414e129, type: 3}
   player: {fileID: 1126430282}
+  bossMouth: {fileID: 0}
   minInterval: 1
   maxInterval: 5
   force: 25
