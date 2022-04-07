@@ -5,13 +5,13 @@ using UnityEngine;
 public class PieceRemover : MonoBehaviour
 {
 
-    public PieceGenerator generator;
+    //public PieceGenerator generator;
     public float piecesPassed = 0;
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Collided");
         if (other.gameObject.tag == "Road")
         {
-            generator.removeFromPool(other.gameObject);
+            PieceGenerator.instance.removeFromPool(other.gameObject);
             GameManager.instance.PiecesPassed =1;
             Debug.Log("Piece passed: " + GameManager.instance.PiecesPassed);
         }

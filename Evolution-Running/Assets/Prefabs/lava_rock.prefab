@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3719954361490965496}
   - component: {fileID: 4734328205216972555}
   - component: {fileID: 483205879534696514}
+  - component: {fileID: 4648831941570378350}
   m_Layer: 0
   m_Name: lava_rock
   m_TagString: Enemy
@@ -125,3 +126,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a71435ef7dfaa24baccf9677ba4793f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4648831941570378350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799947837409540093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e7df9a36cfefa48b76dcc3e73677ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: 1
+  speed: 0
