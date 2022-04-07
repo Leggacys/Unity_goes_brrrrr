@@ -57,9 +57,17 @@ public class GameManager : MonoBehaviour
     {
         Boss.SetActive(true);
         PieceGenerator.instance.startPoint = Vector3.zero;
-        PlayerManager.instace.transform.position = new Vector3(0, 15, 3);
+        PlayerManager.instace.transform.position = new Vector3(0, 15, 10);
         PieceGenerator.instance.SwitchMode(0);
         
+    }
+
+    public void OnBossDefeat()
+    {
+        PieceGenerator.instance.startPoint = Vector3.zero;
+        PlayerManager.instace.transform.position = new Vector3(0, 20, 10);
+        PieceGenerator.instance.SwitchMode(1);
+        progressStatus = 0;
     }
 
     // Update is called once per frame

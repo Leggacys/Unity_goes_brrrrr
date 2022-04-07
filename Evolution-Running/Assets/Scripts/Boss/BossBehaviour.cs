@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossBehaviour : MonoBehaviour
 {
@@ -10,10 +12,18 @@ public class BossBehaviour : MonoBehaviour
     public Transform bossMouth;
     public float minInterval, maxInterval;
     public float force;
+    
+    [Header("Health")] 
+    public int maxHP;
+    public int damagePerHit;
+    public HealthBar hpBar;
+    
+    
     private Animator animator;
     void Awake()
     {
         animator = GetComponent<Animator>();
+        hpBar.SetMaxHealth(maxHP);
         StartCoroutine(shootAt());
     }
 
@@ -38,9 +48,20 @@ public class BossBehaviour : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider collision)
     {
-        
+        //Debug.Log("Collided");
+        if (collision.gameObject.tag == "Projectile")
+        {
+            maxHP -= damagePerHit;
+            hpBar.SetHealth(maxHP);
+        }
+
+        if (maxHP < 0)
+        {
+            
+            GameManager.instance.OnBossDefeat();
+            gameObject.SetActive(false);
+        }
     }
 }
