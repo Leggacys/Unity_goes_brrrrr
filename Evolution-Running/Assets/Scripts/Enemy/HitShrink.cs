@@ -8,7 +8,7 @@ public class HitShrink : MonoBehaviour
 {
     private int currentHitCount = 0;
     public int lives;
-    public float speed;
+    
     private Rigidbody rb;
     
     private void Start()

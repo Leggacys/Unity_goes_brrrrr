@@ -25,7 +25,7 @@ public class PieceSize : MonoBehaviour
     IEnumerator getCoords(){
 
 
-        Vector3 RayPosition = transform.position + Vector3.up * 10;
+        Vector3 RayPosition = transform.position + Vector3.up * 20;
         Vector3 hitPoint;
         Vector3 DownDirection;
         Vector3 lastHit = new Vector3(0,0,0);
