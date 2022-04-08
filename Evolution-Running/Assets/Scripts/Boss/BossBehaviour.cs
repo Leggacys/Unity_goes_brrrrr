@@ -17,13 +17,22 @@ public class BossBehaviour : MonoBehaviour
     public int maxHP;
     public int damagePerHit;
     public HealthBar hpBar;
-    
-    
+
+    public int currentHp;
     private Animator animator;
-    void Awake()
+
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    void OnEnable()
+    {
+        
         hpBar.SetMaxHealth(maxHP);
+        currentHp = maxHP;
+        Debug.Log("I spawned");
+        StopCoroutine(shootAt());
         StartCoroutine(shootAt());
     }
 
@@ -48,20 +57,20 @@ public class BossBehaviour : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collided");
         if (collision.gameObject.tag == "Projectile")
         {
-            maxHP -= damagePerHit;
-            hpBar.SetHealth(maxHP);
+            currentHp -= damagePerHit;
+            hpBar.SetHealth(currentHp);
         }
 
-        if (maxHP < 0)
+        if (currentHp < 0)
         {
             
             GameManager.instance.OnBossDefeat();
-            gameObject.SetActive(false);
+            
         }
     }
 }
