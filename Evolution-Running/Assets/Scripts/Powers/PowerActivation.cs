@@ -27,6 +27,9 @@ public class PowerActivation : MonoBehaviour
                 case 2:
                     powerManager.JumpPower();
                     break;
+                case 3:
+                    powerManager.ProjectilePower();
+                    break;
                 
             }
         }

@@ -8594,6 +8594,7 @@ MonoBehaviour:
   throwPower: 10
   canAttack: 1
   timeBetweenAttacks: 0.1
+  homingProjectiles: 0
   canDash: 1
   dashCooldown: 1
   dashForce: 15
@@ -16602,7 +16603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpMax: 100
   Boss: {fileID: 919132148602641799}
-  progressTrigger: 5
+  progressTrigger: 20
 --- !u!4 &2054302746
 Transform:
   m_ObjectHideFlags: 0
@@ -16634,6 +16635,7 @@ MonoBehaviour:
   speedTime: 3
   jumpPower: 4
   jumpTime: 3
+  specialProjectiles: 3
 --- !u!1 &2061005182
 GameObject:
   m_ObjectHideFlags: 0

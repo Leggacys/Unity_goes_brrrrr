@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
 	public float throwPower;
 	public bool canAttack;
 	public float timeBetweenAttacks;
+	public float homingProjectiles;
 
     [Header("Dash")] 
     public bool canDash;
@@ -101,7 +102,13 @@ public class PlayerMovement : MonoBehaviour
 	public void Attack()
     {
         GameObject newProjectile = Instantiate(projectile,transform.position + transform.forward + transform.up, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody>().AddForce(transform.forward*throwPower + transform.up/2,ForceMode.Impulse);
+        if (homingProjectiles > 0)
+        {
+	        newProjectile.GetComponent<HomingProjectile>().enabled = true;
+	        homingProjectiles--;
+        }
+        else
+			newProjectile.GetComponent<Rigidbody>().AddForce(transform.forward*throwPower + transform.up/2,ForceMode.Impulse);
         StartCoroutine(attackCooldown());
         
     }

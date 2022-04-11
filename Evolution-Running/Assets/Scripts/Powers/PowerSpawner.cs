@@ -10,7 +10,7 @@ public class PowerSpawner : MonoBehaviour
     {
         if (Random.value < spawnChance)
         {
-            int index = Random.Range(0, 3);
+            int index = Random.Range(0, 4);
             transform.GetChild(index).gameObject.SetActive(true);
         }
     }

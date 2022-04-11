@@ -31,14 +31,18 @@ public class PowerManager : MonoBehaviour
     public float jumpPower;
     public float jumpTime;
 
+    public float specialProjectiles;
+
     private float initialSpeed;
     private float initialJump;
     private PlayerManager playerManager;
+    private PlayerMovement playerMovement;
     
     
     void Start()
     {
         playerManager = PlayerManager.instace;
+        playerMovement = PlayerMovement.instance;
         initialSpeed = playerManager.speed;
         initialJump = playerManager.jumpAmount;
     }
@@ -82,5 +86,10 @@ public class PowerManager : MonoBehaviour
         playerManager.jumpAmount += jumpPower;
         yield return new WaitForSeconds(jumpTime);
         playerManager.jumpAmount = initialJump;
+    }
+
+    public void ProjectilePower()
+    {
+        playerMovement.homingProjectiles += specialProjectiles;
     }
 }
