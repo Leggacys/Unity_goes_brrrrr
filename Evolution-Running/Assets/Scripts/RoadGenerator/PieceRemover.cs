@@ -19,8 +19,7 @@ public class PieceRemover : MonoBehaviour
         if (other.gameObject.tag == "Road")
         {
             generator.removeFromPool(other.gameObject);
-            gameManager.PiecesPassed =1;
-            Debug.Log("Piece passed: " + gameManager.PiecesPassed);
+            
         }
 
         if(other.gameObject.tag == "Enemy")

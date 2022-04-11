@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PieceGenerator : MonoBehaviour
@@ -30,12 +31,19 @@ public class PieceGenerator : MonoBehaviour
     public List<GameObject> inactivePool=null;
     public List<GameObject> activeBossFightPieces = null;
     public List<GameObject> inactiveBossPieces = null;
+    private List<GameObject> platforms;
     public float pieceSpeed;
     public float maxHeight,minHeight,length,initialLength,workingLength;
     Vector3 latestOffset;
     public int maxTries;
 
+    public GameObject newPlatform;
+    public float platformChance;
+    public float heightOffset;
+    public float previousHeight;
+
     private int workingCase = 0;
+    private GameManager gameManager;
 
     private Coroutine bossRoutine;
 
@@ -45,6 +53,8 @@ public class PieceGenerator : MonoBehaviour
 
     void Start(){
         startPoint = new Vector3(0,0,0);
+        platforms = new List<GameObject>();
+        gameManager = GameManager.instance;
         //bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
         //StopCoroutine(bossRoutine);
         //normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
@@ -82,6 +92,14 @@ public class PieceGenerator : MonoBehaviour
                     
                 }
 
+                foreach (GameObject el in platforms)
+                {
+                    if(el != null)
+                        Destroy(el);
+                }
+
+                platforms = new List<GameObject>();
+                previousHeight = -999;
                 bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
                 //StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
                 
@@ -102,7 +120,15 @@ public class PieceGenerator : MonoBehaviour
                         piece.SetActive(false);
                     
                 }
+                foreach (GameObject el in platforms)
+                {
+                    if(el != null)
+                        Destroy(el);
+                }
 
+                platforms = new List<GameObject>();
+
+                previousHeight = -999;
                 normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
                 //StartCoroutine(roadGenerator(inactivePool,currentPieces));
                 break;
@@ -159,6 +185,53 @@ public class PieceGenerator : MonoBehaviour
                 // generated.SetActive(true);
                 // generated.GetComponent<PieceView>().enabled = true;
                 succesfull = true;
+                for (int i = 0; i < 2; i++)
+                {
+                    if (Random.value < platformChance)
+                    {
+                        List<float> heights = new List<float>();
+                        if (startPoint.y + size.maxHeight + heightOffset < maxHeight)
+                            heights.Add(startPoint.y + size.maxHeight + heightOffset);
+                        if (previousHeight != -999)
+                        {
+                            if (previousHeight + heightOffset < maxHeight)
+                                heights.Add(previousHeight + heightOffset);
+                            if (previousHeight - heightOffset > startPoint.y + size.maxHeight + heightOffset)
+                                heights.Add(previousHeight - heightOffset);
+                        }
+
+                        if (heights.Count > 0)
+                        {
+                            int ind = Random.Range(0, heights.Count);
+                            float widthOffset;
+                            if (i == 0)
+                                widthOffset = size.width / 4;
+                            else
+                                widthOffset = 3 * size.width / 4;
+                            
+                            Vector3 pos = new Vector3(startPoint.x, heights[ind], startPoint.z +widthOffset);
+                            GameObject spawn = Instantiate(newPlatform, pos, Quaternion.identity);
+                            platforms.Add(spawn);
+                            spawn.GetComponent<MovePiece>().speed = pieceSpeed;
+                            spawn.GetComponent<MovePiece>().isRunning = true;
+                            previousHeight = heights[ind];
+                        }
+                        else
+                        {
+                            previousHeight = -999;
+                        }
+                    }
+
+                    if (platforms.Count % 3 == 0)
+                    {
+                        if (Random.value < 0.66f)
+                            previousHeight = -999;
+                    }
+
+                    
+                }
+                
+
                 startPoint += new Vector3(0,size.endpointRelative,size.width);
                 latestOffset = new Vector3(0,size.endpointRelative,size.width);
                 
@@ -187,19 +260,45 @@ public class PieceGenerator : MonoBehaviour
     }
 
     public void removeFromPool(GameObject obj){
-        if(currentPieces.Contains(obj)){
-        currentPieces.Remove(obj);
-        inactivePool.Add(obj);
-        obj.GetComponent<MovePiece>().isRunning=false;
-        obj.SetActive(false);
+        if (workingCase == 1)
+        {
+            if (currentPieces.Contains(obj))
+            {
+                currentPieces.Remove(obj);
+                inactivePool.Add(obj);
+                obj.GetComponent<MovePiece>().isRunning = false;
+                obj.SetActive(false);
+                gameManager.PiecesPassed = 1;
+                Debug.Log("Piece passed: " + gameManager.PiecesPassed);
+            }
+            else
+            {
+                Destroy(obj);
+            }
         }
-        if(activeBossFightPieces.Contains(obj)){
-            activeBossFightPieces.Remove(obj);
-            inactiveBossPieces.Add(obj);
-            obj.GetComponent<MovePiece>().isRunning=false;
-            obj.SetActive(false);
+        else
+        {
+            if (activeBossFightPieces.Contains(obj))
+            {
+                activeBossFightPieces.Remove(obj);
+                inactiveBossPieces.Add(obj);
+                obj.GetComponent<MovePiece>().isRunning = false;
+                obj.SetActive(false);
+                gameManager.PiecesPassed = 1;
+                Debug.Log("Piece passed: " + gameManager.PiecesPassed);
+            }
+            else
+            {
+                Destroy(obj);
+            }
         }
     }
+    
+
+
+    
+
+    
 
    
 }
