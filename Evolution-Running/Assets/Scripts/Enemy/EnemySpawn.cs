@@ -20,7 +20,7 @@ public class EnemySpawn : MonoBehaviour
         while (true)
         {
             Vector3 pos = spawnPoint.position + new Vector3(0, 30, 30);
-            GameObject spawned = Instantiate(enemy, pos, Quaternion.Euler(0,-90,-90));
+            GameObject spawned = Instantiate(enemy, pos, Quaternion.Euler(0,-90,0));
             yield return new WaitForSeconds(spawnInterval);
         }
     }
