@@ -6,13 +6,24 @@ public class PowerSpawner : MonoBehaviour
 {
     public float spawnChance;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         if (Random.value < spawnChance)
         {
-            int index = Random.Range(0, 4);
-            transform.GetChild(index).gameObject.SetActive(true);
+            if (!checkActive())
+            {
+                int index = Random.Range(0, 4);
+                transform.GetChild(index).gameObject.SetActive(true);
+            }
         }
+    }
+
+    bool checkActive()
+    {
+        for(int i = 0;i<4;i++)
+            if (transform.GetChild(i).gameObject.activeSelf)
+                return true;
+        return false;
     }
 
     // Update is called once per frame
