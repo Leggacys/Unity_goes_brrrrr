@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
     public float hpMax;
     public GameObject Boss;
     public int progressTrigger;
-    private float progressStatus;
+    public GameObject bossHelthBar;
+    public ProgressBar progressBar;
+    public GameObject UIProgressBar;
+    private int progressStatus;
+    
     
     #region Singletone
 
@@ -30,7 +34,7 @@ public class GameManager : MonoBehaviour
     #endregion
     
     
-    public float PiecesPassed
+    public int PiecesPassed
     {
         get
         {
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
         {
             
             progressStatus += value;
+            if(UIProgressBar.activeSelf)
+                progressBar.SetProgress(progressStatus);
             if (progressStatus == progressTrigger)
             {
                 SpawnBoss();
@@ -51,11 +57,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         hpMax = PlayerManager.instace.maxHP;
+        progressBar.SetMaxProgress(progressTrigger);
     }
 
     void SpawnBoss()
     {
+        bossHelthBar.SetActive(true);
         Boss.SetActive(true);
+        UIProgressBar.SetActive(false);
         PieceGenerator.instance.startPoint = Vector3.zero;
         PlayerManager.instace.transform.position = new Vector3(0, 15, 10);
         PieceGenerator.instance.SwitchMode(0);
@@ -64,10 +73,13 @@ public class GameManager : MonoBehaviour
 
     public void OnBossDefeat()
     {
+        bossHelthBar.SetActive(false);
+        UIProgressBar.SetActive(true);
         PieceGenerator.instance.startPoint = Vector3.zero;
         PlayerManager.instace.transform.position = new Vector3(0, 20, 10);
         PieceGenerator.instance.SwitchMode(1);
         progressStatus = 0;
+        progressBar.SetProgress(progressStatus);
         Boss.SetActive(false);
     }
 
