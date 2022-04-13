@@ -212,7 +212,7 @@ public class PieceGenerator : MonoBehaviour
                                 widthOffset = 3 * size.width / 4;
                             
                             Vector3 pos = new Vector3(startPoint.x, heights[ind], startPoint.z +widthOffset);
-                            GameObject spawn = Instantiate(newPlatform, pos, Quaternion.identity);
+                            GameObject spawn = Instantiate(newPlatform, pos, Quaternion.Euler(-90,0,0));
                             platforms.Add(spawn);
                             spawn.GetComponent<MovePiece>().speed = pieceSpeed;
                             spawn.GetComponent<MovePiece>().isRunning = true;

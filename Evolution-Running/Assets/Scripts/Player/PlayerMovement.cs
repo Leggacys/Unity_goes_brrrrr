@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public bool canDash;
     public float dashCooldown;
     public float dashForce;
+
+    [Header("GroundPound")] 
+    public float groundForce;
     
     
 	private Vector3 direction;
@@ -52,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		StartCoroutine(Unstuck());
 	}
 	
 	private void FixedUpdate()
@@ -66,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		PlayerAnimations.instance.FallAnimation();
 		isGrounded = true;
+		
 	}
 	
 	private void Gravity()
@@ -131,4 +137,32 @@ public class PlayerMovement : MonoBehaviour
 	    //PlayerManager.instace.speed /= 2;
 	    canDash = true;
     }
+
+    public void Land()
+    {
+	    Debug.Log("LANDING");
+	    StopCoroutine(HitGround());
+	    StartCoroutine(HitGround());
+    }
+
+    IEnumerator HitGround()
+    {
+	    while (!isGrounded)
+	    {
+		    rb.AddForce(Vector3.down * groundForce,ForceMode.Impulse);
+		    yield return new WaitForSeconds(0.05f);
+	    }
+    }
+
+    IEnumerator Unstuck()
+    {
+	    while (true)
+	    {
+		    if (transform.position.y < -20)
+			    transform.position = new Vector3(0, 15, 10);
+		    yield return new WaitForSeconds(2f);
+	    }
+    }
+
+    
 }

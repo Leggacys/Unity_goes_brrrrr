@@ -49,9 +49,11 @@ public class PowerManager : MonoBehaviour
     
     public void HealthPower()
     {
-        
-        playerManager.maxHP += healingPower;
-        playerManager.hpBar.SetHealth(playerManager.maxHP);
+        if (playerManager.currentHP < playerManager.maxHP)
+        {
+            playerManager.currentHP += healingPower;
+            playerManager.hpBar.SetHealth(playerManager.currentHP);
+        }
     }
 
     public void SpeedPower()

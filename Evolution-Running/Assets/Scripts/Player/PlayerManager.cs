@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     public int maxHP;
     public int damagePerHit;
     public HealthBar hpBar;
+    public int currentHP;
     
     
     public void JumpAnimation()
@@ -64,12 +65,19 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void GroundMove()
+    {
+        PlayerMovement.instance.Land();
+    }
+
     private void Start()
     {
         playerInput.Movement.Jump.performed += context => JumpAnimation();
         playerInput.Movement.Throw.performed += context => AttackMove();
         playerInput.Movement.Dash.performed += context => DashMove();
+        playerInput.Movement.GroundPound.performed += context => GroundMove();
         hpBar.SetMaxHealth(maxHP);
+        currentHP = maxHP;
     }
 
     private void OnEnable()
@@ -86,12 +94,14 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            maxHP -= damagePerHit;
-            hpBar.SetHealth(maxHP);
+            currentHP -= damagePerHit;
+            hpBar.SetHealth(currentHP);
         }
 
-        if (maxHP <= 0)
-            maxHP = 100;
+        if (currentHP <= 0)
+        {
+            GameManager.instance.OnDeath();
+        }
 
     }
 }

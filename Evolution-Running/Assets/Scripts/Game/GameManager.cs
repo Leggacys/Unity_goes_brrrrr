@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject UIBossText;
     public GameObject UI;
     public GameObject gameplayCamera;
+    public EnemySpawn enemySpawner;
     private int progressStatus;
     
     
@@ -74,7 +75,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        enemySpawner.offset = new Vector3(0, 30, 30);
         
         StartCoroutine(TutorialScreen());
 
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
         gameplayCamera.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         player.SetActive(true);
+        player.transform.position = new Vector3(0, 30, 10);
+        PlayerManager.instace.currentHP = PlayerManager.instace.maxHP;
         PowerManager.instance.StartDataCollection();
         hpMax = PlayerManager.instace.maxHP;
         
@@ -107,17 +111,20 @@ public class GameManager : MonoBehaviour
         Boss.SetActive(true);
         UIProgressBar.SetActive(false);
         PieceGenerator.instance.startPoint = Vector3.zero;
-        PlayerManager.instace.transform.position = new Vector3(0, 15, 10);
+        PlayerManager.instace.transform.position = new Vector3(0, 30, 10);
         PieceGenerator.instance.SwitchMode(0);
-        
+        enemySpawner.offset = new Vector3(0, 20, 15);
+
     }
 
     void IncomingText(bool status)
     {
         Debug.Log("Status: " + status);
-        
-        if(status != UIBossText.activeInHierarchy)
+
+        if (status != UIBossText.activeInHierarchy)
+        {
             UIBossText.SetActive(status);
+        }
     }
 
     public void OnBossDefeat()
@@ -130,6 +137,15 @@ public class GameManager : MonoBehaviour
         progressStatus = 0;
         progressBar.SetProgress(progressStatus);
         Boss.SetActive(false);
+        enemySpawner.offset = new Vector3(0, 30, 30);
+    }
+
+    public void OnDeath()
+    {
+        gameplayCamera.SetActive(false);
+        UI.SetActive(false);
+        player.SetActive(false);
+        Start();
     }
 
     // Update is called once per frame

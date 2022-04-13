@@ -41,6 +41,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""GroundPound"",
+                    ""type"": ""Button"",
+                    ""id"": ""17018751-8a0a-4d45-95ba-35e451ea5dfd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cba51b37-b615-4f81-b594-fb3ed78e91ef"",
+                    ""path"": ""<Keyboard>/#(S)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GroundPound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -87,6 +106,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Throw = m_Movement.FindAction("Throw", throwIfNotFound: true);
         m_Movement_Dash = m_Movement.FindAction("Dash", throwIfNotFound: true);
+        m_Movement_GroundPound = m_Movement.FindAction("GroundPound", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,6 +159,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Throw;
     private readonly InputAction m_Movement_Dash;
+    private readonly InputAction m_Movement_GroundPound;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -146,6 +167,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Throw => m_Wrapper.m_Movement_Throw;
         public InputAction @Dash => m_Wrapper.m_Movement_Dash;
+        public InputAction @GroundPound => m_Wrapper.m_Movement_GroundPound;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +186,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnDash;
+                @GroundPound.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnGroundPound;
+                @GroundPound.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnGroundPound;
+                @GroundPound.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnGroundPound;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @GroundPound.started += instance.OnGroundPound;
+                @GroundPound.performed += instance.OnGroundPound;
+                @GroundPound.canceled += instance.OnGroundPound;
             }
         }
     }
@@ -186,5 +214,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnGroundPound(InputAction.CallbackContext context);
     }
 }

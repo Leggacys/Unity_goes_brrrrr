@@ -64,6 +64,7 @@ public class BossBehaviour : MonoBehaviour
         {
             currentHp -= damagePerHit;
             hpBar.SetHealth(currentHp);
+            Destroy(collision.gameObject);
         }
 
         if (currentHp < 0)
