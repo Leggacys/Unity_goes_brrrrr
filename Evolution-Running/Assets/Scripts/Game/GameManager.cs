@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         player.SetActive(true);
         player.transform.position = new Vector3(0, 30, 10);
+        PlayerMovement.instance.canAttack = true;
+        PlayerMovement.instance.canDash = true;
         PlayerManager.instace.currentHP = PlayerManager.instace.maxHP;
         PowerManager.instance.StartDataCollection();
         hpMax = PlayerManager.instace.maxHP;
