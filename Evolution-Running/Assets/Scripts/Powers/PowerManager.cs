@@ -39,7 +39,7 @@ public class PowerManager : MonoBehaviour
     private PlayerMovement playerMovement;
     
     
-    void Start()
+    public void StartDataCollection()
     {
         playerManager = PlayerManager.instace;
         playerMovement = PlayerMovement.instance;

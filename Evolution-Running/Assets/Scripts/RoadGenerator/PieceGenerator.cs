@@ -84,11 +84,11 @@ public class PieceGenerator : MonoBehaviour
                 for(int i = 0 ; i < currentPieces.Count;i++)
                 {
                     GameObject piece = currentPieces[i];
-                        currentPieces.Remove(piece);
-                        i--;
-                        inactivePool.Add(piece);
-                        piece.GetComponent<MovePiece>().isRunning=false;
-                        piece.SetActive(false);
+                    currentPieces.Remove(piece);
+                    i--;
+                    inactivePool.Add(piece);
+                    piece.GetComponent<MovePiece>().isRunning=false;
+                    piece.SetActive(false);
                     
                 }
 
@@ -101,6 +101,7 @@ public class PieceGenerator : MonoBehaviour
                 platforms = new List<GameObject>();
                 previousHeight = -999;
                 bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
+                
                 //StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
                 
                 break;
@@ -113,11 +114,11 @@ public class PieceGenerator : MonoBehaviour
                 {
 
                     GameObject piece = activeBossFightPieces[i];
-                        activeBossFightPieces.Remove(piece);
-                        i--;
-                        inactiveBossPieces.Add(piece);
-                        piece.GetComponent<MovePiece>().isRunning=false;
-                        piece.SetActive(false);
+                    activeBossFightPieces.Remove(piece);
+                    i--;
+                    inactiveBossPieces.Add(piece);
+                    piece.GetComponent<MovePiece>().isRunning=false;
+                    piece.SetActive(false);
                     
                 }
                 foreach (GameObject el in platforms)
@@ -125,11 +126,12 @@ public class PieceGenerator : MonoBehaviour
                     if(el != null)
                         Destroy(el);
                 }
-
                 platforms = new List<GameObject>();
 
                 previousHeight = -999;
                 normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
+                
+
                 //StartCoroutine(roadGenerator(inactivePool,currentPieces));
                 break;
                 
@@ -248,9 +250,9 @@ public class PieceGenerator : MonoBehaviour
     IEnumerator roadGenerator(List<GameObject> inactivePool , List<GameObject> activePool){
 
         while(true){
-
-            if(activePool.Count < workingLength)
-                PickPiece(inactivePool,activePool);
+            if(inactivePool.Count > 0)
+                if(activePool.Count < workingLength)
+                    PickPiece(inactivePool,activePool);
 
 
             yield return new WaitForSeconds(0.05f);
@@ -268,6 +270,7 @@ public class PieceGenerator : MonoBehaviour
                 inactivePool.Add(obj);
                 obj.GetComponent<MovePiece>().isRunning = false;
                 obj.SetActive(false);
+                
                 gameManager.PiecesPassed = 1;
                 Debug.Log("Piece passed: " + gameManager.PiecesPassed);
             }

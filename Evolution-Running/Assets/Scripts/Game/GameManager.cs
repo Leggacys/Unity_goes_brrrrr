@@ -8,10 +8,14 @@ public class GameManager : MonoBehaviour
     
     public float hpMax;
     public GameObject Boss;
+    public GameObject player;
     public int progressTrigger;
     public GameObject bossHelthBar;
     public ProgressBar progressBar;
     public GameObject UIProgressBar;
+    public GameObject UIBossText;
+    public GameObject UI;
+    public GameObject gameplayCamera;
     private int progressStatus;
     
     
@@ -44,24 +48,61 @@ public class GameManager : MonoBehaviour
         set
         {
             
-            progressStatus += value;
-            if(UIProgressBar.activeSelf)
-                progressBar.SetProgress(progressStatus);
-            if (progressStatus == progressTrigger)
+            
+            if (UIProgressBar.activeInHierarchy)
             {
-                SpawnBoss();
+                progressStatus += value;
+                progressBar.SetProgress(progressStatus);
+                if (progressStatus == progressTrigger)
+                {
+                    SpawnBoss();
+                }
+                else
+                {
+                    if(progressTrigger - progressStatus<=2)
+                        IncomingText(true);
+                }
+                
+                
+                
             }
+            
+               
+            
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        hpMax = PlayerManager.instace.maxHP;
+        
+        
+        StartCoroutine(TutorialScreen());
+
+    }
+
+    IEnumerator TutorialScreen()
+    {
+        
+        yield return new WaitForSeconds(7f);
+        
+        
+        UI.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         progressBar.SetMaxProgress(progressTrigger);
+        gameplayCamera.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        player.SetActive(true);
+        PowerManager.instance.StartDataCollection();
+        hpMax = PlayerManager.instace.maxHP;
+        
+        
     }
 
     void SpawnBoss()
     {
+        
+        Debug.Log("Spwaning BOss");
+        IncomingText(false);
         bossHelthBar.SetActive(true);
         Boss.SetActive(true);
         UIProgressBar.SetActive(false);
@@ -69,6 +110,14 @@ public class GameManager : MonoBehaviour
         PlayerManager.instace.transform.position = new Vector3(0, 15, 10);
         PieceGenerator.instance.SwitchMode(0);
         
+    }
+
+    void IncomingText(bool status)
+    {
+        Debug.Log("Status: " + status);
+        
+        if(status != UIBossText.activeInHierarchy)
+            UIBossText.SetActive(status);
     }
 
     public void OnBossDefeat()

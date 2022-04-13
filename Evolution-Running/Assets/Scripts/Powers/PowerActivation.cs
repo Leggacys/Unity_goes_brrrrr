@@ -32,6 +32,8 @@ public class PowerActivation : MonoBehaviour
                     break;
                 
             }
+
+            Destroy(gameObject);
         }
     }
 }
