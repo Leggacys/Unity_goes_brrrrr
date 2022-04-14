@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -17,8 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject UI;
     public GameObject gameplayCamera;
     public EnemySpawn enemySpawner;
+    public GameObject UIScore;
     private int progressStatus;
-    
+    private TextMeshProUGUI UIScoreText;
+    public float score;
+    private float lastPos;
     
     #region Singletone
 
@@ -75,8 +79,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        lastPos = 0;
         enemySpawner.offset = new Vector3(0, 30, 30);
+        score = 0;
         
         StartCoroutine(TutorialScreen());
 
@@ -89,8 +94,13 @@ public class GameManager : MonoBehaviour
         
         
         UI.SetActive(true);
+        UIScore.SetActive(true);
+        UIScoreText = UIScore.GetComponent<TextMeshProUGUI>();
+        StartCoroutine(UpdateScore());
         yield return new WaitForSeconds(0.5f);
+        UIProgressBar.SetActive(true);
         progressBar.SetMaxProgress(progressTrigger);
+        progressBar.SetProgress(0);
         gameplayCamera.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         player.SetActive(true);
@@ -113,7 +123,7 @@ public class GameManager : MonoBehaviour
         Boss.SetActive(true);
         UIProgressBar.SetActive(false);
         PieceGenerator.instance.startPoint = Vector3.zero;
-        PlayerManager.instace.transform.position = new Vector3(0, 30, 10);
+        PlayerManager.instace.transform.position = new Vector3(0, 35, 10);
         PieceGenerator.instance.SwitchMode(0);
         enemySpawner.offset = new Vector3(0, 20, 15);
 
@@ -134,25 +144,44 @@ public class GameManager : MonoBehaviour
         bossHelthBar.SetActive(false);
         UIProgressBar.SetActive(true);
         PieceGenerator.instance.startPoint = Vector3.zero;
-        PlayerManager.instace.transform.position = new Vector3(0, 20, 10);
+        PlayerManager.instace.transform.position = new Vector3(0, 35, 10);
         PieceGenerator.instance.SwitchMode(1);
         progressStatus = 0;
         progressBar.SetProgress(progressStatus);
         Boss.SetActive(false);
         enemySpawner.offset = new Vector3(0, 30, 30);
+        score += 50;
     }
 
     public void OnDeath()
     {
         gameplayCamera.SetActive(false);
+        bossHelthBar.SetActive(false);
+        progressStatus = 0;
+        //progressBar.SetProgress(progressStatus);
+        Boss.SetActive(false);
+        UIBossText.SetActive(false);
         UI.SetActive(false);
+        //PlayerMovement.instance.Start();
         player.SetActive(false);
+        PieceGenerator.instance.startPoint = Vector3.zero;
+        PieceGenerator.instance.SwitchMode(1);
+        
+        
         Start();
     }
 
     // Update is called once per frame
-    void Update()
+    IEnumerator UpdateScore()
     {
-        
+        while (true)
+        {
+            if (player.transform.position.z > lastPos)
+                score += (player.transform.position.z - lastPos) / 5;
+            lastPos = player.transform.position.z;
+            if (UIScore.activeInHierarchy)
+                UIScoreText.text = "Score : " + score.ToString(".00");
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }

@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask ground;
 	public float raycastDistance;
 
-	private void Start()
+	public void OnEnable()
 	{
 		rb = GetComponent<Rigidbody>();
 		StartCoroutine(Unstuck());
@@ -159,7 +159,11 @@ public class PlayerMovement : MonoBehaviour
 	    while (true)
 	    {
 		    if (transform.position.y < -20)
-			    transform.position = new Vector3(0, 15, 10);
+		    {
+			    transform.position = new Vector3(0, 35, 10);
+			    rb.velocity = Vector3.zero;
+		    }
+
 		    yield return new WaitForSeconds(2f);
 	    }
     }

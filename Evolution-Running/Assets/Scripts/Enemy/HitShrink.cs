@@ -53,7 +53,10 @@ public class HitShrink : MonoBehaviour
         currentHitCount++;
         
         Destroy(projectile);
-        if(currentHitCount>= lives)
+        if (currentHitCount >= lives)
+        {
+            GameManager.instance.score += 2;
             Destroy(gameObject);
+        }
     }
 }
