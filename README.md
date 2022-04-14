@@ -1,6 +1,6 @@
 # Evolution Running
 
-![alt text](https://imgur.com/a/KhKwpdP)
+![image](https://user-images.githubusercontent.com/57069862/163385975-053d91a9-0599-4d37-92f2-f881e3aaea3b.png)
 
 ## Echipa
 - Iamandi Andrei-Petrisor ([@Iamandi-Andrei](https://github.com/Iamandi-Andrei))
