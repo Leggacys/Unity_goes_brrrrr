@@ -21,11 +21,7 @@ public class HealthBar : MonoBehaviour
 		fill.color = gradient.Evaluate(1f);
 	}
 
-	public void Update()
-	{
-	}
-
-    public void SetHealth(int health)
+	public void SetHealth(int health)
 	{
 		slider.value = health;
 		heartJumpAnimation.Play();

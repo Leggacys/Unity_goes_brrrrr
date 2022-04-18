@@ -61,7 +61,7 @@ public class PieceSize : MonoBehaviour
         endpointRelative = lastHit.y - transform.position.y;
         //Debug.Log(count);
 
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 10; i++)
         {
             PieceGenerator generator = PieceGenerator.instance;
             if(generator.inactivePool == null)

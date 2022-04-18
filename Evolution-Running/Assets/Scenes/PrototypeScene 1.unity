@@ -10252,6 +10252,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   raycastDistance: 10
+  takeHit: 0
 --- !u!114 &1126430277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10266,7 +10267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   twinningTime: 1
   jumpAmount: 14
-  speed: 2
+  speed: 10
   rotatePerJump: 90
   playerBody: {fileID: 1126430274}
   maxHP: 100

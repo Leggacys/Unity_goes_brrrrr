@@ -23,15 +23,10 @@ public class PlayerMovement : MonoBehaviour
 	
 
 	#endregion
-	
-	
+
 	public float gravity = -9.18f;
 	
 	public bool isGrounded { get; set; }
-	
-	private Vector3 velocity = new Vector3(0 , 0 ,1);
-	private Rigidbody rb;
-	
 
 	[Header("Attack")]
 	public GameObject projectile;
@@ -39,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 	public bool canAttack;
 	public float timeBetweenAttacks;
 	public float homingProjectiles;
+	public float attackRate;
 
     [Header("Dash")] 
     public bool canDash;
@@ -47,12 +43,19 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("GroundPound")] 
     public float groundForce;
-    
-    
-	private Vector3 direction;
+
+    private Vector3 direction;
 	public LayerMask ground;
 	public float raycastDistance;
 
+
+	[HideInInspector]
+	public  bool takeHit;
+	
+	private Vector3 velocity = new Vector3(0 , 0 ,2);
+	private Rigidbody rb;
+	private float time;
+	
 	public void OnEnable()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -61,10 +64,14 @@ public class PlayerMovement : MonoBehaviour
 	
 	private void FixedUpdate()
 	{
-		rb.MovePosition(  rb.position + new Vector3(0,velocity.y,
-			velocity.z* PlayerManager.instace.speed) * Time.fixedDeltaTime);
-		Gravity();
-		TakeGroundAngle();
+		if (!takeHit)
+		{
+			rb.MovePosition(  rb.position + new Vector3(0,velocity.y,
+				velocity.z* PlayerManager.instace.speed) * Time.fixedDeltaTime);
+			Gravity();
+			//TakeGroundAngle();
+		}
+		
 	}
 	
 	private void OnCollisionEnter(Collision collision)
@@ -107,6 +114,8 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Attack()
     {
+	    
+	    
         GameObject newProjectile = Instantiate(projectile,transform.position + transform.forward + transform.up, Quaternion.identity);
         if (homingProjectiles > 0)
         {
@@ -166,6 +175,12 @@ public class PlayerMovement : MonoBehaviour
 
 		    yield return new WaitForSeconds(2f);
 	    }
+    }
+
+    public void TakeHitEffect()
+    {
+	    rb.velocity=Vector3.zero;
+	    rb.AddForce(new Vector3(0f,20,-20f),ForceMode.Impulse);
     }
 
     

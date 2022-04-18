@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Security.Cryptography;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -96,6 +97,7 @@ public class PlayerManager : MonoBehaviour
         {
             currentHP -= damagePerHit;
             hpBar.SetHealth(currentHP);
+            StartCoroutine(HitEffect());
         }
 
         if (currentHP <= 0)
@@ -103,5 +105,16 @@ public class PlayerManager : MonoBehaviour
             GameManager.instance.OnDeath();
         }
 
+    }
+
+    IEnumerator HitEffect()
+    { 
+        Debug.Log("set take hit " + PlayerMovement.instance.takeHit);
+        PlayerMovement.instance.TakeHitEffect();
+        PlayerMovement.instance.takeHit = true;
+
+        yield return new WaitForSeconds(1f);
+
+        PlayerMovement.instance.takeHit = false;
     }
 }
