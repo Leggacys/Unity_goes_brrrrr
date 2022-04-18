@@ -10244,10 +10244,12 @@ MonoBehaviour:
   canAttack: 1
   timeBetweenAttacks: 0.1
   homingProjectiles: 0
+  attackRate: 0
   canDash: 1
   dashCooldown: 1
   dashForce: 15
   groundForce: 15
+  slamForce: 150
   ground:
     serializedVersion: 2
     m_Bits: 0
@@ -10267,7 +10269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   twinningTime: 1
   jumpAmount: 14
-  speed: 10
+  speed: 5
   rotatePerJump: 90
   playerBody: {fileID: 1126430274}
   maxHP: 100
