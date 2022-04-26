@@ -34,6 +34,7 @@ public class PieceGenerator : MonoBehaviour
     private List<GameObject> platforms;
     public float pieceSpeed;
     public float maxHeight,minHeight,length,initialLength,workingLength;
+    public float randMinHeight, randMaxHeight;
     Vector3 latestOffset;
     public int maxTries;
 
@@ -167,11 +168,20 @@ public class PieceGenerator : MonoBehaviour
         
         int tries = 0;
         bool succesfull = false;
-        while(!succesfull){
-
+        while(!succesfull)
+        {
+            float randHeightOffset;
+            if (workingCase == 1)
+            {
+                randHeightOffset = Random.Range(randMinHeight, randMaxHeight);
+            }
+            else
+            {
+                randHeightOffset = 0;
+            }
             int pickIndex = Random.Range(0,inactivePool.Count);
             PieceSize size = inactivePool[pickIndex].GetComponent<PieceSize>();
-            if(startPoint.y + size.minHeight > minHeight  && startPoint.y + size.maxHeight < maxHeight){
+            if(startPoint.y + size.minHeight + randHeightOffset > minHeight  && startPoint.y + size.maxHeight + randHeightOffset < maxHeight){
                 //startPoint += new Vector3(sizes[pickIndex].width,0,0f);
 
                 
@@ -192,8 +202,8 @@ public class PieceGenerator : MonoBehaviour
                     if (Random.value < platformChance)
                     {
                         List<float> heights = new List<float>();
-                        if (startPoint.y + size.maxHeight + heightOffset < maxHeight)
-                            heights.Add(startPoint.y + size.maxHeight + heightOffset);
+                        if (startPoint.y + size.maxHeight + heightOffset + randHeightOffset < maxHeight)
+                            heights.Add(startPoint.y + size.maxHeight + heightOffset + randHeightOffset);
                         if (previousHeight != -999)
                         {
                             if (previousHeight + heightOffset < maxHeight)
@@ -234,8 +244,8 @@ public class PieceGenerator : MonoBehaviour
                 }
                 
 
-                startPoint += new Vector3(0,size.endpointRelative,size.width);
-                latestOffset = new Vector3(0,size.endpointRelative,size.width);
+                startPoint += new Vector3(0,size.endpointRelative + randHeightOffset,size.width);
+                latestOffset = new Vector3(0,size.endpointRelative + randHeightOffset,size.width);
                 
             }
 
