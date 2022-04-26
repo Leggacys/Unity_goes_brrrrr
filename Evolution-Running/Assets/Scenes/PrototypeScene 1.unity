@@ -10249,6 +10249,7 @@ MonoBehaviour:
   dashCooldown: 1
   dashForce: 15
   groundForce: 15
+  slamForce: 150
   ground:
     serializedVersion: 2
     m_Bits: 0
@@ -10268,7 +10269,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   twinningTime: 1
   jumpAmount: 14
+<<<<<<< HEAD
   speed: 7
+=======
+  speed: 5
+>>>>>>> cdd25e3f9743964111bea919a9a079897b619e08
   rotatePerJump: 90
   playerBody: {fileID: 1126430274}
   maxHP: 100

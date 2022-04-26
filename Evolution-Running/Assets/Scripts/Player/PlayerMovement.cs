@@ -43,7 +43,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("GroundPound")] 
     public float groundForce;
-
+    public float slamForce;
+    private bool isSlamming;
+    private float initialY;
+    
     private Vector3 direction;
 	public LayerMask ground;
 	public float raycastDistance;
@@ -78,6 +81,34 @@ public class PlayerMovement : MonoBehaviour
 	{
 		PlayerAnimations.instance.FallAnimation();
 		isGrounded = true;
+		if (isSlamming)
+		{
+			SlamAttack();
+		}
+		
+	}
+
+	private void SlamAttack()
+	{
+		isSlamming = false;
+		float radius = Mathf.Abs(initialY - transform.position.y)*3;
+		Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+		Debug.Log("here");
+		Debug.Log(radius);
+		foreach (Collider hit in colliders)
+		{
+			if (hit.gameObject.transform.root != transform)
+			{
+				Rigidbody rb = hit.gameObject.GetComponent<Rigidbody>();
+				if (rb)
+				{
+					Debug.Log("Applying force");
+					rb.constraints = RigidbodyConstraints.None;
+					rb.AddExplosionForce(slamForce * radius, transform.position, radius);
+				}
+			}
+		}
+
 		
 	}
 	
@@ -156,6 +187,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator HitGround()
     {
+	    isSlamming = true;
+	    initialY = transform.position.y;
 	    while (!isGrounded)
 	    {
 		    rb.AddForce(Vector3.down * groundForce,ForceMode.Impulse);
