@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		isGrounded = false;	
 		velocity.y = Mathf.Sqrt(PlayerManager.instace.jumpAmount * -2f * gravity);
-		PlayerAnimations.instance.JumpEffect(PlayerManager.instace.playerBody);
+		//PlayerAnimations.instance.JumpEffect(PlayerManager.instace.playerBody);
 		
 	}
 
