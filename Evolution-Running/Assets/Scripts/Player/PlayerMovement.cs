@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 	private void SlamAttack()
 	{
 		isSlamming = false;
-		float radius = Mathf.Abs(initialY - transform.position.y)*3;
+		float radius = Mathf.Abs(initialY - transform.position.y);
 		Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 		Debug.Log("here");
 		Debug.Log(radius);
@@ -99,6 +99,14 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (hit.gameObject.transform.root != transform && hit.gameObject.tag != "NoMove")
 			{
+				if (hit.gameObject.name.Contains("Platform"))
+				{
+					PlatformRegeneration regen = hit.GetComponent<PlatformRegeneration>();
+					if (regen)
+					{
+						regen.onDestruction();
+					}
+				}
 				Rigidbody rb = hit.gameObject.GetComponent<Rigidbody>();
 				if (rb)
 				{
@@ -107,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
 					rb.isKinematic = false;
 					//hit.gameObject.transform.parent = null;
 					rb.AddExplosionForce(slamForce * radius, transform.position, radius);
+					
 				}
 			}
 		}

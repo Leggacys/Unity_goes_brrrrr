@@ -7943,7 +7943,7 @@ MonoBehaviour:
   dashCooldown: 1
   dashForce: 15
   groundForce: 30
-  slamForce: 100
+  slamForce: 50
   ground:
     serializedVersion: 2
     m_Bits: 0
@@ -9355,7 +9355,7 @@ MonoBehaviour:
   randMinHeight: -6
   randMaxHeight: 6
   maxTries: 40
-  newPlatform: {fileID: 1628361421825498502, guid: b3920cb409658d748a3ed44e0b72cf92, type: 3}
+  newPlatform: {fileID: 1252002727356869361, guid: 4ccc980d2255f5640b84a9105dad0feb, type: 3}
   platformChance: 0.8
   heightOffset: 5
   previousHeight: -999

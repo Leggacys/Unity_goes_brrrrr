@@ -61,7 +61,7 @@ public class PieceGenerator : MonoBehaviour
         gameManager = GameManager.instance;
         for (int i = 0; i < workingLength * 2; i++)
         {
-            GameObject obj = Instantiate(newPlatform, new Vector3(-30, -70, -30), Quaternion.Euler(-90, 0, 0));
+            GameObject obj = Instantiate(newPlatform, new Vector3(-30, -70, -30), Quaternion.Euler(0, 0, 0));
             outPlatform.Add(obj);
             obj.SetActive(false);
         }
@@ -355,9 +355,14 @@ public class PieceGenerator : MonoBehaviour
             }
         }
     }
-    
 
 
+    public void regeneratePlatform()
+    {
+        GameObject obj = Instantiate(newPlatform, new Vector3(-30, -70, -30), Quaternion.Euler(0, 0, 0));
+        outPlatform.Add(obj);
+        obj.SetActive(false);
+    }
     
 
     
