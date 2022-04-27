@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 	public void OnEnable()
 	{
 		rb = GetComponent<Rigidbody>();
-		StartCoroutine(Unstuck());
+		//StartCoroutine(Unstuck());
 	}
 	
 	private void FixedUpdate()
@@ -97,13 +97,15 @@ public class PlayerMovement : MonoBehaviour
 		Debug.Log(radius);
 		foreach (Collider hit in colliders)
 		{
-			if (hit.gameObject.transform.root != transform)
+			if (hit.gameObject.transform.root != transform && hit.gameObject.tag != "NoMove")
 			{
 				Rigidbody rb = hit.gameObject.GetComponent<Rigidbody>();
 				if (rb)
 				{
 					Debug.Log("Applying force");
 					rb.constraints = RigidbodyConstraints.None;
+					rb.isKinematic = false;
+					//hit.gameObject.transform.parent = null;
 					rb.AddExplosionForce(slamForce * radius, transform.position, radius);
 				}
 			}
@@ -196,19 +198,7 @@ public class PlayerMovement : MonoBehaviour
 	    }
     }
 
-    IEnumerator Unstuck()
-    {
-	    while (true)
-	    {
-		    if (transform.position.y < -20)
-		    {
-			    transform.position = new Vector3(0, 35, 10);
-			    rb.velocity = Vector3.zero;
-		    }
 
-		    yield return new WaitForSeconds(2f);
-	    }
-    }
 
     public void TakeHitEffect()
     {

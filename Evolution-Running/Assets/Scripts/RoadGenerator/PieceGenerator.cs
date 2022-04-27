@@ -31,6 +31,8 @@ public class PieceGenerator : MonoBehaviour
     public List<GameObject> inactivePool=null;
     public List<GameObject> activeBossFightPieces = null;
     public List<GameObject> inactiveBossPieces = null;
+    public List<GameObject> inPlatform=null;
+    public List<GameObject> outPlatform = null;
     private List<GameObject> platforms;
     public float pieceSpeed;
     public float maxHeight,minHeight,length,initialLength,workingLength;
@@ -54,8 +56,15 @@ public class PieceGenerator : MonoBehaviour
 
     void Start(){
         startPoint = new Vector3(0,0,0);
-        platforms = new List<GameObject>();
+        inPlatform = new List<GameObject>();
+        outPlatform = new List<GameObject>();
         gameManager = GameManager.instance;
+        for (int i = 0; i < workingLength * 2; i++)
+        {
+            GameObject obj = Instantiate(newPlatform, new Vector3(-30, -70, -30), Quaternion.Euler(-90, 0, 0));
+            outPlatform.Add(obj);
+            obj.SetActive(false);
+        }
         //bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
         //StopCoroutine(bossRoutine);
         //normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
@@ -93,13 +102,19 @@ public class PieceGenerator : MonoBehaviour
                     
                 }
 
-                foreach (GameObject el in platforms)
+                
+                for(int i = 0 ;i<inPlatform.Count;i++)
                 {
-                    if(el != null)
-                        Destroy(el);
-                }
 
-                platforms = new List<GameObject>();
+                    GameObject piece = inPlatform[i];
+                    inPlatform.Remove(piece);
+                    i--;
+                    outPlatform.Add(piece);
+                    piece.GetComponent<MovePiece>().isRunning=false;
+                    piece.SetActive(false);
+                    
+                }
+                
                 previousHeight = -999;
                 bossRoutine = StartCoroutine(roadGenerator(inactiveBossPieces, activeBossFightPieces));
                 
@@ -122,12 +137,20 @@ public class PieceGenerator : MonoBehaviour
                     piece.SetActive(false);
                     
                 }
-                foreach (GameObject el in platforms)
+                
+                for(int i = 0 ;i<inPlatform.Count;i++)
                 {
-                    if(el != null)
-                        Destroy(el);
+
+                    GameObject piece = inPlatform[i];
+                    inPlatform.Remove(piece);
+                    i--;
+                    outPlatform.Add(piece);
+                    piece.GetComponent<MovePiece>().isRunning=false;
+                    piece.SetActive(false);
+                    
                 }
-                platforms = new List<GameObject>();
+                
+                
 
                 previousHeight = -999;
                 normalRoutine = StartCoroutine(roadGenerator(inactivePool, currentPieces));
@@ -222,8 +245,13 @@ public class PieceGenerator : MonoBehaviour
                                 widthOffset = 3 * size.width / 4;
                             
                             Vector3 pos = new Vector3(startPoint.x, heights[ind], startPoint.z +widthOffset);
-                            GameObject spawn = Instantiate(newPlatform, pos, Quaternion.Euler(-90,0,0));
-                            platforms.Add(spawn);
+                            //GameObject spawn = Instantiate(newPlatform, pos, Quaternion.Euler(-90,0,0));
+                            //platforms.Add(spawn);
+                            GameObject spawn = outPlatform[Random.Range(0, outPlatform.Count)];
+                            spawn.transform.position = pos;
+                            outPlatform.Remove(spawn);
+                            inPlatform.Add(spawn);
+                            spawn.SetActive(true);
                             spawn.GetComponent<MovePiece>().speed = pieceSpeed;
                             spawn.GetComponent<MovePiece>().isRunning = true;
                             previousHeight = heights[ind];
@@ -234,18 +262,17 @@ public class PieceGenerator : MonoBehaviour
                         }
                     }
 
-                    if (platforms.Count % 3 == 0)
-                    {
-                        if (Random.value < 0.66f)
-                            previousHeight = -999;
-                    }
+                    
+                    if (Random.value < 0.25f)
+                        previousHeight = -999;
+                    
 
                     
                 }
                 
 
-                startPoint += new Vector3(0,size.endpointRelative + randHeightOffset,size.width);
-                latestOffset = new Vector3(0,size.endpointRelative + randHeightOffset,size.width);
+                startPoint += new Vector3(0, randHeightOffset,size.width);
+                latestOffset = new Vector3(0,randHeightOffset,size.width);
                 
             }
 
@@ -286,7 +313,18 @@ public class PieceGenerator : MonoBehaviour
             }
             else
             {
-                Destroy(obj);
+                if (inPlatform.Contains(obj))
+                {
+                    obj.GetComponent<MovePiece>().isRunning = false;
+                    
+                    inPlatform.Remove(obj);
+                    outPlatform.Add(obj);
+                    obj.SetActive(false);
+                }
+                else
+                {
+                    Destroy(obj);
+                }
             }
         }
         else
@@ -302,7 +340,18 @@ public class PieceGenerator : MonoBehaviour
             }
             else
             {
-                Destroy(obj);
+                if (inPlatform.Contains(obj))
+                {
+                    obj.GetComponent<MovePiece>().isRunning = false;
+                    
+                    inPlatform.Remove(obj);
+                    outPlatform.Add(obj);
+                    obj.SetActive(false);
+                }
+                else
+                {
+                    Destroy(obj);
+                }
             }
         }
     }

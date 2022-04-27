@@ -22,8 +22,8 @@ public class PieceRemover : MonoBehaviour
             
         }
 
-        if(other.gameObject.tag == "Enemy")
-            Destroy(other.gameObject);
+        //if(other.gameObject.tag == "Enemy")
+        //    Destroy(other.gameObject);
     }
 
     //private void OnTriggerExit(Collider other) {

@@ -12,7 +12,7 @@ public class PowerSpawner : MonoBehaviour
         {
             if (!checkActive())
             {
-                int index = Random.Range(0, 4);
+                int index = Random.Range(0, transform.childCount);
                 transform.GetChild(index).gameObject.SetActive(true);
             }
         }
@@ -20,7 +20,7 @@ public class PowerSpawner : MonoBehaviour
 
     bool checkActive()
     {
-        for(int i = 0;i<4;i++)
+        for(int i = 0;i<transform.childCount;i++)
             if (transform.GetChild(i).gameObject.activeSelf)
                 return true;
         return false;

@@ -577,7 +577,6 @@ MonoBehaviour:
   width: 4
   maxHeight: 2
   minHeight: 0
-  endpointRelative: 2
   isFirstTime: 1
   isBossPiece: 0
 --- !u!1 &179138407
@@ -882,7 +881,6 @@ MonoBehaviour:
   width: 0
   maxHeight: 0
   minHeight: 0
-  endpointRelative: 0
   isFirstTime: 1
   isBossPiece: 0
 --- !u!1 &306119447
@@ -6434,6 +6432,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &561894344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561894345}
+  - component: {fileID: 561894347}
+  - component: {fileID: 561894346}
+  m_Layer: 0
+  m_Name: FallPreventCollider
+  m_TagString: NoMove
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &561894345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561894344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 667854385}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561894346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561894344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff06c46228c76946af40a94b8e0148f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &561894347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561894344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 708.7297, y: 81.81384, z: 828.7969}
+  m_Center: {x: -16.573029, y: -133.12425, z: 235.85522}
 --- !u!1 &579980375
 GameObject:
   m_ObjectHideFlags: 0
@@ -6941,7 +6996,7 @@ GameObject:
   - component: {fileID: 667854387}
   m_Layer: 0
   m_Name: EndCollider
-  m_TagString: Untagged
+  m_TagString: NoMove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6982,7 +7037,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -27}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 561894345}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7564,7 +7620,6 @@ MonoBehaviour:
   width: 4
   maxHeight: 0
   minHeight: 0
-  endpointRelative: 0
   isFirstTime: 1
   isBossPiece: 0
 --- !u!1 &1051578529
@@ -7887,7 +7942,7 @@ MonoBehaviour:
   canDash: 1
   dashCooldown: 1
   dashForce: 15
-  groundForce: 10
+  groundForce: 30
   slamForce: 100
   ground:
     serializedVersion: 2
@@ -9289,18 +9344,20 @@ MonoBehaviour:
   inactivePool: []
   activeBossFightPieces: []
   inactiveBossPieces: []
+  inPlatform: []
+  outPlatform: []
   pieceSpeed: 7
   maxHeight: 30
   minHeight: -10
   length: 5
   initialLength: 5
-  workingLength: 10
+  workingLength: 20
   randMinHeight: -6
   randMaxHeight: 6
   maxTries: 40
   newPlatform: {fileID: 1628361421825498502, guid: b3920cb409658d748a3ed44e0b72cf92, type: 3}
   platformChance: 0.8
-  heightOffset: 4
+  heightOffset: 5
   previousHeight: -999
 --- !u!4 &1495948239
 Transform:
@@ -15068,7 +15125,6 @@ MonoBehaviour:
   width: 0
   maxHeight: 0
   minHeight: 0
-  endpointRelative: 0
   isFirstTime: 1
   isBossPiece: 0
 --- !u!1 &2031236660
@@ -15211,7 +15267,6 @@ MonoBehaviour:
   width: 8
   maxHeight: 0
   minHeight: 0
-  endpointRelative: 0
   isFirstTime: 1
   isBossPiece: 0
 --- !u!1 &2054302744
@@ -15684,7 +15739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 37983108643107640, guid: 549b3c3ff55ba8249be413a2364e86b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -521
       objectReference: {fileID: 0}
     - target: {fileID: 37983108643107640, guid: 549b3c3ff55ba8249be413a2364e86b2, type: 3}
       propertyPath: m_LocalRotation.w

@@ -8,7 +8,7 @@ public class PieceSize : MonoBehaviour
     
     public float maxScanLength;
     public float ratio;
-    public float width,maxHeight,minHeight,endpointRelative;
+    public float width,maxHeight,minHeight;
     //public LayerMask layers;
     public bool isFirstTime;
 
@@ -58,7 +58,7 @@ public class PieceSize : MonoBehaviour
            yield return new WaitForSeconds(0.001f);
         }
         width = Mathf.Abs(transform.position.z - lastHit.z);
-        endpointRelative = lastHit.y - transform.position.y;
+        //endpointRelative = lastHit.y - transform.position.y;
         //Debug.Log(count);
 
         for(int i = 0; i < 10; i++)
