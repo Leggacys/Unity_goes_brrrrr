@@ -99,24 +99,11 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (hit.gameObject.transform.root != transform && hit.gameObject.tag != "NoMove")
 			{
-				if (hit.gameObject.name.Contains("Platform"))
-				{
-					PlatformRegeneration regen = hit.GetComponent<PlatformRegeneration>();
-					if (regen)
-					{
-						regen.onDestruction();
-					}
-				}
-				Rigidbody rb = hit.gameObject.GetComponent<Rigidbody>();
-				if (rb)
-				{
-					Debug.Log("Applying force");
-					rb.constraints = RigidbodyConstraints.None;
-					rb.isKinematic = false;
-					//hit.gameObject.transform.parent = null;
-					rb.AddExplosionForce(slamForce * radius, transform.position, radius);
-					
-				}
+				IDestroyBase destr = (IDestroyBase)hit.GetComponent(typeof(IDestroyBase));
+				if(destr != null)
+					destr.onDestruction(slamForce, radius, transform.position);
+				
+				
 			}
 		}
 
