@@ -13,6 +13,7 @@ public class PieceSize : MonoBehaviour
     public bool isFirstTime;
 
     public bool isBossPiece;
+    public bool isRegularPiece = true;
     
     //public PieceGenerator generator;
     void Start(){
@@ -70,7 +71,8 @@ public class PieceSize : MonoBehaviour
             generated.transform.localScale = transform.localScale;
             generated.GetComponent<PieceSize>().isFirstTime = false;
             
-            generator.inactivePool.Add(generated);
+            if(isRegularPiece)
+                generator.inactivePool.Add(generated);
             
             if(isBossPiece)
                 generator.inactiveBossPieces.Add(generated);

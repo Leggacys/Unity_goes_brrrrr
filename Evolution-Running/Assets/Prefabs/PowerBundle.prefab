@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 3
+  particles: {fileID: 7821609854633287699, guid: ba019dc4ff11840449afbe64bd455dab, type: 3}
 --- !u!1 &1871046484810593394
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 0
+  particles: {fileID: 4342566896848324938, guid: 01dc5906a14f7c649839c6d30aa7e898, type: 3}
 --- !u!1 &6554143465826028886
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 1
+  particles: {fileID: 3728309352165722762, guid: 1533ae27feec73641b14ca6c22132ba9, type: 3}
 --- !u!1 &7108569475316864668
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 2
+  particles: {fileID: 6388181805624736499, guid: ab3bec88f30cf41439c58907a12ec193, type: 3}
 --- !u!1 &8343096676727868239
 GameObject:
   m_ObjectHideFlags: 0

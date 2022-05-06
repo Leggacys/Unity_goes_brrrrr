@@ -16,7 +16,7 @@ public class PieceRemover : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Collided");
-        if (other.gameObject.tag == "Road")
+        if (other.gameObject.tag == "Road" && other.gameObject.transform.parent == null)
         {
             generator.removeFromPool(other.gameObject);
             

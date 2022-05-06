@@ -4401,7 +4401,7 @@ GameObject:
   - component: {fileID: 489646634099769551}
   m_Layer: 0
   m_Name: Platform 1
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4474,8 +4474,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.19386727, z: 0.3421211}
-  m_Center: {x: 0, y: -0.1747732, z: -0.22877115}
+  m_Size: {x: 1, y: 0.21556143, z: 0.3421211}
+  m_Center: {x: 0, y: -0.017186569, z: -0.22877115}
 --- !u!114 &489646634099769551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4980,6 +4980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 2
+  particles: {fileID: 6388181805624736499, guid: ab3bec88f30cf41439c58907a12ec193, type: 3}
 --- !u!54 &4609256654234094722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5066,6 +5067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 3
+  particles: {fileID: 7821609854633287699, guid: ba019dc4ff11840449afbe64bd455dab, type: 3}
 --- !u!54 &7139921731376834008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5152,6 +5154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 0
+  particles: {fileID: 4342566896848324938, guid: 01dc5906a14f7c649839c6d30aa7e898, type: 3}
 --- !u!54 &440323240186339682
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5238,6 +5241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 1
+  particles: {fileID: 3728309352165722762, guid: 1533ae27feec73641b14ca6c22132ba9, type: 3}
 --- !u!54 &4506731353986132491
 Rigidbody:
   m_ObjectHideFlags: 0
