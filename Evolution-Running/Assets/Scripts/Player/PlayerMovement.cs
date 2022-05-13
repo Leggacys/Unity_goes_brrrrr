@@ -189,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
 	    initialY = transform.position.y;
 	    while (!isGrounded)
 	    {
-		    rb.AddForce(Vector3.down * groundForce,ForceMode.Impulse);
+		    rb.AddForce(Vector3.down * groundForce * Math.Abs(initialY)/10,ForceMode.Impulse);
 		    yield return new WaitForSeconds(0.05f);
 	    }
     }
@@ -199,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeHitEffect()
     {
 	    rb.velocity=Vector3.zero;
-	    rb.AddForce(new Vector3(0f,20,-20f),ForceMode.Impulse);
+	    rb.AddForce(new Vector3(0f,14,-14f),ForceMode.Impulse);
     }
 
     
