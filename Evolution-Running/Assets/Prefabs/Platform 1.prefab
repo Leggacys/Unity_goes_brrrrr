@@ -5241,7 +5241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerCase: 1
-  particles: {fileID: 3728309352165722762, guid: 1533ae27feec73641b14ca6c22132ba9, type: 3}
+  particles: {fileID: 1936676757106287786, guid: 7a822db77240b06498b2a9bfc7e687f8, type: 3}
 --- !u!54 &4506731353986132491
 Rigidbody:
   m_ObjectHideFlags: 0

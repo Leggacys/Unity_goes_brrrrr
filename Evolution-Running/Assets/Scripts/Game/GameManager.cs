@@ -197,6 +197,6 @@ public class GameManager : MonoBehaviour
 
     public void ActivateBG()
     {
-        backGround.gameObject.SetActive(true);
+        //backGround.gameObject.SetActive(true);
     }
 }

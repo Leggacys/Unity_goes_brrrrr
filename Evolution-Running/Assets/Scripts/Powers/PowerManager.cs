@@ -61,7 +61,7 @@ public class PowerManager : MonoBehaviour
     {
         StopCoroutine(SpeedUp());
         LeanTween.scale(player, new Vector3(0.5f, 0.5f, 2f), 0.4f).setEaseOutBounce();
-        playerManager.speed = initialSpeed;
+        PlayerManager.instace.speed = initialSpeed;
         StartCoroutine(SpeedUp());
 
     }
@@ -77,7 +77,7 @@ public class PowerManager : MonoBehaviour
     {
         StopCoroutine(JumpUp());
         LeanTween.scale(player, new Vector3(0.5f, 2, 0.5f), 0.4f).setEaseOutBounce();
-        playerManager.jumpAmount = initialJump;
+        PlayerManager.instace.jumpAmount = initialJump;
         StartCoroutine(JumpUp());
 
     }
