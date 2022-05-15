@@ -35,48 +35,44 @@ public class PowerManager : MonoBehaviour
 
     private float initialSpeed;
     private float initialJump;
-    private PlayerManager playerManager;
     private PlayerMovement playerMovement;
     
     
     public void StartDataCollection()
     {
-        playerManager = PlayerManager.instace;
         playerMovement = PlayerMovement.instance;
-        initialSpeed = playerManager.speed;
-        initialJump = playerManager.jumpAmount;
+        initialSpeed = PlayerManager.instace.speed;
+        initialJump = PlayerManager.instace.jumpAmount;
     }
     
     public void HealthPower()
     {
-        if (playerManager.currentHP < playerManager.maxHP)
+        if (PlayerManager.instace.currentHP < PlayerManager.instace.maxHP)
         {
-            playerManager.currentHP += healingPower;
-            playerManager.hpBar.SetHealth(playerManager.currentHP);
+            PlayerManager.instace.currentHP += healingPower;
+            PlayerManager.instace.hpBar.SetHealth(PlayerManager.instace.currentHP);
         }
     }
 
     public void SpeedPower()
     {
         StopCoroutine(SpeedUp());
-        playerManager.speed = initialSpeed;
+        PlayerManager.instace.speed = initialSpeed;
         StartCoroutine(SpeedUp());
 
     }
 
     IEnumerator SpeedUp()
     {
-        
-        
-        playerManager.speed += speedPower;
+        PlayerManager.instace.speed += speedPower;
         yield return new WaitForSeconds(speedTime);
-        playerManager.speed = initialSpeed;
+        PlayerManager.instace.speed = initialSpeed;
     }
 
     public void JumpPower()
     {
         StopCoroutine(JumpUp());
-        playerManager.jumpAmount = initialJump;
+        PlayerManager.instace.jumpAmount = initialJump;
         StartCoroutine(JumpUp());
 
     }
@@ -85,9 +81,9 @@ public class PowerManager : MonoBehaviour
     {
         
         
-        playerManager.jumpAmount += jumpPower;
+        PlayerManager.instace.jumpAmount += jumpPower;
         yield return new WaitForSeconds(jumpTime);
-        playerManager.jumpAmount = initialJump;
+        PlayerManager.instace.jumpAmount = initialJump;
     }
 
     public void ProjectilePower()

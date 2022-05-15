@@ -19,10 +19,14 @@ public class GameManager : MonoBehaviour
     public GameObject gameplayCamera;
     public EnemySpawn enemySpawner;
     public GameObject UIScore;
+    public GameObject backGround;
+    
+    
     private int progressStatus;
     private TextMeshProUGUI UIScoreText;
     public float score;
     private float lastPos;
+    
     
     #region Singletone
 
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour
         PlayerManager.instace.currentHP = PlayerManager.instace.maxHP;
         PowerManager.instance.StartDataCollection();
         hpMax = PlayerManager.instace.maxHP;
+        ActivateBG();
         
         
     }
@@ -183,5 +188,10 @@ public class GameManager : MonoBehaviour
                 UIScoreText.text = "Score : " + score.ToString(".00");
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void ActivateBG()
+    {
+        backGround.gameObject.SetActive(true);
     }
 }
