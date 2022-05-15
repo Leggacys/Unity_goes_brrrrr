@@ -9,6 +9,7 @@ public class PassEnable : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
+        //Debug.Log("MASM ASCTIVATAS");
         powerBundle.GetComponent<PowerSpawner>().OnEnable();
     }
 }

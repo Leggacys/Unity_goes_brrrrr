@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,9 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameplayCamera;
     public EnemySpawn enemySpawner;
     public GameObject UIScore;
-    public GameObject backGround;
-    
-    
+
+    public AudioSwitcher switcher;
     private int progressStatus;
     private TextMeshProUGUI UIScoreText;
     public float score;
@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
         PlayerManager.instace.transform.position = new Vector3(0, 35, 10);
         PieceGenerator.instance.SwitchMode(0);
         enemySpawner.offset = new Vector3(0, 20, 15);
+        switcher.SwitchClips();
 
     }
 
@@ -156,6 +157,10 @@ public class GameManager : MonoBehaviour
         Boss.SetActive(false);
         enemySpawner.offset = new Vector3(0, 30, 30);
         score += 50;
+        switcher.SwitchClips();
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name != "PrototypeScene 3")
+            SceneManager.LoadScene("PrototypeScene 3", LoadSceneMode.Single);
     }
 
     public void OnDeath()

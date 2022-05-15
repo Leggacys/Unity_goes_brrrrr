@@ -33,6 +33,7 @@ public class PowerManager : MonoBehaviour
 
     public float specialProjectiles;
 
+    public GameObject player;
     private float initialSpeed;
     private float initialJump;
     private PlayerMovement playerMovement;
@@ -52,12 +53,15 @@ public class PowerManager : MonoBehaviour
             PlayerManager.instace.currentHP += healingPower;
             PlayerManager.instace.hpBar.SetHealth(PlayerManager.instace.currentHP);
         }
+
+        LeanTween.scale(player, new Vector3(1.5f, 1.5f, 1.5f), 0.3f).setEaseOutBounce();
     }
 
     public void SpeedPower()
     {
         StopCoroutine(SpeedUp());
-        PlayerManager.instace.speed = initialSpeed;
+        LeanTween.scale(player, new Vector3(0.5f, 0.5f, 2f), 0.4f).setEaseOutBounce();
+        playerManager.speed = initialSpeed;
         StartCoroutine(SpeedUp());
 
     }
@@ -72,7 +76,8 @@ public class PowerManager : MonoBehaviour
     public void JumpPower()
     {
         StopCoroutine(JumpUp());
-        PlayerManager.instace.jumpAmount = initialJump;
+        LeanTween.scale(player, new Vector3(0.5f, 2, 0.5f), 0.4f).setEaseOutBounce();
+        playerManager.jumpAmount = initialJump;
         StartCoroutine(JumpUp());
 
     }

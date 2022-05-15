@@ -14,7 +14,8 @@ public class DestroyProjectile : MonoBehaviour
 
     IEnumerator DestroyObj(){
         yield return new WaitForSeconds(timeToLive);
-        Instantiate(explosion, transform.position, Quaternion.identity);
+        if(explosion)
+            Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     
