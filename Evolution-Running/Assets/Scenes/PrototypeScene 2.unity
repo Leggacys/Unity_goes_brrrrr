@@ -16331,9 +16331,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossHeight: 5
-  bloomLayer:
+  ignoreLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
 --- !u!4 &1257170078164525878
 Transform:
   m_ObjectHideFlags: 0

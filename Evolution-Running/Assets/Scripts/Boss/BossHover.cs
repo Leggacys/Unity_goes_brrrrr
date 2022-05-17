@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BossHover : MonoBehaviour
 {
-    public float bossHeight;
-        public LayerMask bloomLayer;
+        public float bossHeight;
+        public LayerMask ignoreLayer;
         private float lastHeight, newHeight;
         
         
@@ -41,7 +41,7 @@ public class BossHover : MonoBehaviour
             Debug.Log(RayPosition);
             Debug.Log(DownDirection);
             //bloomLayer = ~bloomLayer;
-            if (Physics.Raycast(ray, out hit, 200,bloomLayer))
+            if (Physics.Raycast(ray, out hit, 200,ignoreLayer))
             {
                 hitPoint = hit.point;
                 transform.position = new Vector3(transform.position.x, hit.point.y + bossHeight,
@@ -88,7 +88,7 @@ public class BossHover : MonoBehaviour
             Debug.Log(RayPosition);
             Debug.Log(DownDirection);
             //bloomLayer = ~bloomLayer;
-            if (Physics.Raycast(ray, out hit, 200,bloomLayer))
+            if (Physics.Raycast(ray, out hit, 200,ignoreLayer))
             {
                 
                 hitPoint = hit.point;
