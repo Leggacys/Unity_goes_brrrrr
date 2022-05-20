@@ -159,8 +159,8 @@ public class GameManager : MonoBehaviour
         score += 50;
         switcher.SwitchClips();
         Scene scene = SceneManager.GetActiveScene();
-        if(scene.name != "PrototypeScene 3")
-            SceneManager.LoadScene("PrototypeScene 3", LoadSceneMode.Single);
+        if(scene.name != "Level2")
+            SceneManager.LoadScene("Level2", LoadSceneMode.Single);
     }
 
     public void OnDeath()

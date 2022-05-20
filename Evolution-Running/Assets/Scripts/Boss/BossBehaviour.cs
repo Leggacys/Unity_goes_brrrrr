@@ -42,7 +42,8 @@ public class BossBehaviour : MonoBehaviour
         {
             
             GameObject proj = Instantiate(projectile, bossMouth.position, Quaternion.identity);
-            animator.SetBool("isAttacking",true);
+            if(animator)
+                animator.SetBool("isAttacking",true);
             Rigidbody rb = proj.GetComponent<Rigidbody>();
 
             float offset = Random.Range(-1f, 2f);
@@ -51,7 +52,8 @@ public class BossBehaviour : MonoBehaviour
             rb.velocity = pos.normalized * force;
             
             yield return new WaitForSeconds(0.5f);
-            animator.SetBool("isAttacking",false);
+            if(animator)
+                animator.SetBool("isAttacking",false);
             yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
         }
 

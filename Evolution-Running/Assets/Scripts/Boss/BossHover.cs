@@ -25,8 +25,8 @@ public class BossHover : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             lastHeight = transform.position.y;
             Vector3 oldPos = transform.localPosition;
-            transform.position += new Vector3(0, 100, 0);
-            Vector3 RayPosition = transform.position - Vector3.up * 30;
+            transform.position += new Vector3(0, 70, 0);
+            Vector3 RayPosition = transform.position - Vector3.up * 10;
             
             Vector3 hitPoint;
             Vector3 DownDirection;
@@ -67,13 +67,13 @@ public class BossHover : MonoBehaviour
                     StartCoroutine(raiseToHeight());
                 }
     
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.01f);
             }
         }
     
         private float scanHeight()
         {
-            Vector3 RayPosition = transform.position + Vector3.up * 25 +new Vector3(0,0,7f);
+            Vector3 RayPosition = transform.position + Vector3.up * 55 ;
             
             Vector3 hitPoint;
             Vector3 DownDirection;
@@ -106,7 +106,7 @@ public class BossHover : MonoBehaviour
             while (Math.Abs((lastHeight+bossHeight) - transform.position.y) > 4f)
             {
                 float increment = 0.1f;
-                if (lastHeight < transform.position.y)
+                if (lastHeight+bossHeight < transform.position.y)
                     increment = -increment;
                 transform.position += new Vector3(0, increment, 0);
                     
