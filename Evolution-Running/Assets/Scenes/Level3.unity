@@ -10066,9 +10066,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.39061368, g: 0.9339623, b: 0.2942862, a: 1}
+  m_Color: {r: 0.9146212, g: 0.9433962, b: 0.50195795, a: 1}
   m_Intensity: 10
-  m_Range: 20
+  m_Range: 77.67
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -10559,7 +10559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c749f640a23bb5646bf6b6d86de138d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossHeight: 11
+  bossHeight: 9
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -10710,7 +10710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6eae2dd3039e2443a8ea24838091ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3593293265099579962, guid: fee0e2f556e75564aa10a7cee09e5aee, type: 3}
+  enemy: {fileID: 1339088631249105398, guid: fbe26bbbff10b284e8e5fe96356e47a6, type: 3}
   spawnInterval: 5
   offset: {x: 0, y: 0, z: 0}
   spawnPoint: {fileID: 1126430282}
@@ -11735,8 +11735,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.509434, g: 0.50655043, b: 0.50655043, a: 1}
-  m_Intensity: 0.96
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

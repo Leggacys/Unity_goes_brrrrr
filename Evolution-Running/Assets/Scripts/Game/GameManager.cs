@@ -159,8 +159,13 @@ public class GameManager : MonoBehaviour
         score += 50;
         switcher.SwitchClips();
         Scene scene = SceneManager.GetActiveScene();
-        if(scene.name != "Level2")
+        if(scene.name == "Level1")
             SceneManager.LoadScene("Level2", LoadSceneMode.Single);
+        if(scene.name == "Level2")
+            SceneManager.LoadScene("Level3", LoadSceneMode.Single);
+        if (scene.name == "Level3")
+            StartCoroutine(TutorialScreen());
+        //SceneManager.LoadScene("Level3", LoadSceneMode.Single);
     }
 
     public void OnDeath()
