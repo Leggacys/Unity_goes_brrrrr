@@ -31,22 +31,22 @@ public class BossHover : MonoBehaviour
             Vector3 hitPoint;
             Vector3 DownDirection;
     
-            Debug.Log(transform.position);
+           // Debug.Log(transform.position);
             RaycastHit hit;
     
     
             DownDirection = Vector3.down;
             Ray ray = new Ray(RayPosition, DownDirection);
-            Debug.DrawRay(RayPosition,DownDirection+Vector3.down * 100,Color.green,10f);
-            Debug.Log(RayPosition);
-            Debug.Log(DownDirection);
+            //Debug.DrawRay(RayPosition,DownDirection+Vector3.down * 100,Color.green,10f);
+            //Debug.Log(RayPosition);
+            //Debug.Log(DownDirection);
             //bloomLayer = ~bloomLayer;
             if (Physics.Raycast(ray, out hit, 200,ignoreLayer))
             {
                 hitPoint = hit.point;
                 transform.position = new Vector3(transform.position.x, hit.point.y + bossHeight,
                     transform.position.z);
-                Debug.Log("HIt " + hit.collider.gameObject.name );
+                //Debug.Log("HIt " + hit.collider.gameObject.name );
             }
     
             StartCoroutine(updateHeight());
@@ -78,15 +78,15 @@ public class BossHover : MonoBehaviour
             Vector3 hitPoint;
             Vector3 DownDirection;
     
-            Debug.Log(transform.position);
+           // Debug.Log(transform.position);
             RaycastHit hit;
     
     
             DownDirection = Vector3.down;
             Ray ray = new Ray(RayPosition, DownDirection);
-            Debug.DrawRay(RayPosition,DownDirection+Vector3.down * 100,Color.green,10f);
-            Debug.Log(RayPosition);
-            Debug.Log(DownDirection);
+           // Debug.DrawRay(RayPosition,DownDirection+Vector3.down * 100,Color.green,10f);
+           // Debug.Log(RayPosition);
+           // Debug.Log(DownDirection);
             //bloomLayer = ~bloomLayer;
             if (Physics.Raycast(ray, out hit, 200,ignoreLayer))
             {
@@ -94,7 +94,7 @@ public class BossHover : MonoBehaviour
                 hitPoint = hit.point;
                 //transform.position = new Vector3(transform.position.x, hit.point.y + bossHeight,
                 //    transform.position.z);
-                Debug.Log("HIt " + hit.collider.gameObject.name );
+           //     Debug.Log("HIt " + hit.collider.gameObject.name );
                 return hit.point.y;
             }
     

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -85,7 +87,15 @@ public class GameManager : MonoBehaviour
     {
         lastPos = 0;
         enemySpawner.offset = new Vector3(0, 30, 30);
-        score = 0;
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level1")
+        {
+            score = 0;
+        }
+        else
+        {
+            score = readScore();
+        }
         
         StartCoroutine(TutorialScreen());
 
@@ -147,6 +157,7 @@ public class GameManager : MonoBehaviour
 
     public void OnBossDefeat()
     {
+        writeScore(score+50);
         bossHelthBar.SetActive(false);
         UIProgressBar.SetActive(true);
         PieceGenerator.instance.startPoint = Vector3.zero;
@@ -156,8 +167,9 @@ public class GameManager : MonoBehaviour
         progressBar.SetProgress(progressStatus);
         Boss.SetActive(false);
         enemySpawner.offset = new Vector3(0, 30, 30);
-        score += 50;
+        //score += 50;
         switcher.SwitchClips();
+        
         Scene scene = SceneManager.GetActiveScene();
         if(scene.name == "Level1")
             SceneManager.LoadScene("Level2", LoadSceneMode.Single);
@@ -181,7 +193,7 @@ public class GameManager : MonoBehaviour
         player.SetActive(false);
         PieceGenerator.instance.startPoint = Vector3.zero;
         PieceGenerator.instance.SwitchMode(1);
-        
+        writeScore(0);
         
         Start();
     }
@@ -203,5 +215,28 @@ public class GameManager : MonoBehaviour
     public void ActivateBG()
     {
         //backGround.gameObject.SetActive(true);
+    }
+
+    public void writeScore(float score)
+    {
+
+        StreamWriter writer = new StreamWriter(Application.dataPath + "\\scoreValue.txt");
+        writer.Write(score);
+        writer.Flush();
+        writer.Close();
+    }
+
+    public float readScore()
+    {
+        string text = System.IO.File.ReadAllText(Application.dataPath + "\\scoreValue.txt");
+        if (text != "")
+        {
+            float value = float.Parse(text, CultureInfo.InvariantCulture.NumberFormat);
+            return value;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

@@ -179,14 +179,17 @@ public class PlayerMovement : MonoBehaviour
     public void Land()
     {
 	    Debug.Log("LANDING");
-	    StopCoroutine(HitGround());
-	    StartCoroutine(HitGround());
+	    //StopCoroutine(HitGround());
+	    //StartCoroutine(HitGround());
+	    initialY = transform.position.y;
+	    isSlamming = true;
+	    rb.AddForce(Vector3.down * groundForce * Math.Abs(initialY)/5,ForceMode.Impulse);
     }
 
     IEnumerator HitGround()
     {
 	    isSlamming = true;
-	    initialY = transform.position.y;
+	    
 	    while (!isGrounded)
 	    {
 		    rb.AddForce(Vector3.down * groundForce * Math.Abs(initialY)/10,ForceMode.Impulse);
